@@ -67,9 +67,11 @@ coinlist=(
 'AXO'
 'BTCH'
 'ETOMIC'
-'VOTE2018'
+#'VOTE2018'
 'NINJA'
 'OOT'
+'BNTN'
+'CHAIN'
 )
 
 count=0
