@@ -51,13 +51,14 @@ processlist=(
 'AXO'
 'BTCH'
 'ETOMIC'
-#'PIZZA'
-#'BEER'
-#'VOTE2018'
+'PIZZA'
+'BEER'
+'VOTE2018'
 'NINJA'
 'OOT'
 'BNTN'
 'CHAIN'
+'PRLPAY'
 )
 
 count=0
