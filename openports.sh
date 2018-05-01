@@ -13,6 +13,8 @@ sudo ufw allow 7773  # Iguana port
 sudo ufw allow 7774  # Iguana port
 sudo ufw allow 7775  # Iguana port
 
+sudo ufw allow 17775 # Iguana (2018) port
+
 sudo ufw allow 10195 # REVS asset chain port
 sudo ufw allow 11340 # SUPERNET asset chain port
 sudo ufw allow 11889 # DEX asset chain port
