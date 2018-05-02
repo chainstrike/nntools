@@ -13,8 +13,8 @@ IFS=
 source coinlist
 utxoamt=0.00010000
 ntrzdamt=-0.00083600
-btcntrzaddr=13swCVuXeZhWkmwEXod83Mv2YWKVqYeMVS
-kmdntrzaddr=RCA8H1npFPW5pnJRzycF8tFEJmn6XZhD4j
+btcntrzaddr=1P3rU1Nk1pmc2BiWC8dEy9bZa1ZbMp5jfg
+kmdntrzaddr=RXL3YXG2ceaB6C5hfJcN4fvmLH2C34knhA
 
 #ignoreacs=('VOTE2018' 'PRLPAY')
 ignoreacs=('VOTE2018' 'PIZZA' 'BEER')
