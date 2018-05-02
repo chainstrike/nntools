@@ -10,7 +10,7 @@ txscanamount=10000
 
 #Don't change below unless you know
 IFS=
-source coinlist
+source /home/$USER/nntools/coinlist
 utxoamt=0.00010000
 ntrzdamt=-0.00083600
 btcntrzaddr=1P3rU1Nk1pmc2BiWC8dEy9bZa1ZbMp5jfg
