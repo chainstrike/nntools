@@ -8,16 +8,16 @@ sleepytime=600
 #How many transactions back to scan for notarizations
 txscanamount=10000
 
+# Ignore these coins -> see file coinlist.ignore
+source /home/$USER/nntools/coinlist.ignore
+
 #Don't change below unless you know
 IFS=
-source /home/$USER/nntools/coinlist
+source /home/$USER/nntools/coinlist.nr
 utxoamt=0.00010000
 ntrzdamt=-0.00083600
 btcntrzaddr=1P3rU1Nk1pmc2BiWC8dEy9bZa1ZbMp5jfg
 kmdntrzaddr=RXL3YXG2ceaB6C5hfJcN4fvmLH2C34knhA
-
-#ignoreacs=('VOTE2018' 'PRLPAY')
-ignoreacs=('VOTE2018' 'PIZZA' 'BEER')
 
 format="%-8s %7s %6s %7s %12s %8s %7s %7s\n"
 

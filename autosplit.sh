@@ -4,7 +4,11 @@
 MINUTXOS=150
 # Amount of UTXOs to create at one time
 SPLITAMNT=50
-# Change Paths to acsplit script
+
+# Load coinlist from file
+source /home/$USER/nntools/coinlist.split
+
+
 
 # Manual Check of BTC, CHIPS, KMD
 echo "Checking BTC, CHIPS, KMD"
@@ -45,35 +49,6 @@ echo "Checking Other Coins"
 
 # Check the rest of the coins using a loop
 # Feel free to add coins as required here
-
-coinlist=(
-'REVS'
-'SUPERNET'
-'DEX'
-'PANGEA'
-'JUMBLR'
-'BET'
-'CRYPTO'
-'HODL'
-'MSHARK'
-'BOTS'
-'MGW'
-'COQUI'
-'WLC'
-'KV'
-'CEAL'
-'MESH'
-'MNZ'
-'AXO'
-'BTCH'
-'ETOMIC'
-'VOTE2018'
-'NINJA'
-'OOT'
-'BNTN'
-'CHAIN'
-'PRLPAY'
-)
 
 count=0
 while [ "x${coinlist[count]}" != "x" ]
