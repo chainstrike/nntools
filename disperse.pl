@@ -3,16 +3,16 @@ use strict;
 use warnings;
 my $cli = shift || "komodo-cli";
 my $balance = qx{$cli getbalance};
-print "Current Balance=$balance\n";
+print "# Current Balance=$balance\n";
 my %addresses = (
 	# address => percent
-	"RGZBQh4AqziCZ6rS8ps1kLqD7ribbCpv9a" => .45, # jeezy
-	"RBSEv7nJ1wciriVyLFWotQ8tBvS2rKwYtz" => .45, # duke
-	"AIRDROP"		                     => .10, # airdrop
+	"RGZBQh4AqziCZ6rS8ps1kLqD7ribbCpv9a" => .40, # jeezy
+	"RBSEv7nJ1wciriVyLFWotQ8tBvS2rKwYtz" => .40, # duke
+	"AIRDROP"		             => .10, # airdrop
+	"PROJECTS"		             => .10, # projects
 );
 
-# leave 10% and disperse 90%
-my $percent = 0.10;
+# leave 11 and disperse rest
 my $reserve = 11;
 my $disperse= $balance - $reserve;
 
