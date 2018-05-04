@@ -14,7 +14,7 @@ source /home/$USER/nntools/coinlist.split
 echo "Checking BTC, CHIPS, KMD"
 cd ~
 echo -n BTC
-UTXOS="$(bitcoin-cli listunspent | grep .0001 | wc -l)"
+UTXOS="$(/usr/bin/bitcoin-cli listunspent | grep .0001 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
@@ -25,7 +25,7 @@ if [ "$UTXOS" -lt "$MINUTXOS" ]
 echo ""
 cd ~/chips3/src
 echo -n CHIPS
-UTXOS="$(chips-cli listunspent | grep .0001 | wc -l)"
+UTXOS="$(/usr/local/bin/chips-cli listunspent | grep .0001 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
@@ -36,7 +36,7 @@ if [ "$UTXOS" -lt "$MINUTXOS" ]
 echo ""
 cd ~/komodo/src
 echo -n KMD
-UTXOS="$(komodo-cli listunspent | grep .0001 | wc -l)"
+UTXOS="$(/usr/local/bin/komodo-cli listunspent | grep .0001 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
@@ -54,7 +54,7 @@ count=0
 while [ "x${coinlist[count]}" != "x" ]
 do
   echo -n "${coinlist[count]}"
-  UTXOS="$(komodo-cli -ac_name=${coinlist[count]} listunspent | grep .0001 | wc -l)"
+  UTXOS="$(/usr/local/bin/komodo-cli -ac_name=${coinlist[count]} listunspent | grep .0001 | wc -l)"
   echo -n -e '\t\t';echo -n "$UTXOS"
   if [ "$UTXOS" -lt "$MINUTXOS" ]
      then
