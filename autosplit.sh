@@ -4,6 +4,8 @@
 MINUTXOS=150
 # Amount of UTXOs to create at one time
 SPLITAMNT=50
+# Size of UTXOs
+UTXOSIZE=0.0001
 
 # Load coinlist from file
 source /home/$USER/nntools/coinlist.split
@@ -14,7 +16,7 @@ source /home/$USER/nntools/coinlist.split
 echo "Checking BTC, CHIPS, KMD"
 cd ~
 echo -n BTC
-UTXOS="$(/usr/bin/bitcoin-cli listunspent | grep .0001 | wc -l)"
+UTXOS="$(/usr/bin/bitcoin-cli listunspent | grep $UTXOSIZE | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
@@ -25,7 +27,7 @@ if [ "$UTXOS" -lt "$MINUTXOS" ]
 echo ""
 cd ~/chips3/src
 echo -n CHIPS
-UTXOS="$(/usr/local/bin/chips-cli listunspent | grep .0001 | wc -l)"
+UTXOS="$(/usr/local/bin/chips-cli listunspent | grep $UTXOSIZE | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
@@ -36,7 +38,7 @@ if [ "$UTXOS" -lt "$MINUTXOS" ]
 echo ""
 cd ~/komodo/src
 echo -n KMD
-UTXOS="$(/usr/local/bin/komodo-cli listunspent | grep .0001 | wc -l)"
+UTXOS="$(/usr/local/bin/komodo-cli listunspent | grep $UTXOSIZE | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
@@ -54,7 +56,7 @@ count=0
 while [ "x${coinlist[count]}" != "x" ]
 do
   echo -n "${coinlist[count]}"
-  UTXOS="$(/usr/local/bin/komodo-cli -ac_name=${coinlist[count]} listunspent | grep .0001 | wc -l)"
+  UTXOS="$(/usr/local/bin/komodo-cli -ac_name=${coinlist[count]} listunspent | grep $UTXOSIZE | wc -l)"
   echo -n -e '\t\t';echo -n "$UTXOS"
   if [ "$UTXOS" -lt "$MINUTXOS" ]
      then
