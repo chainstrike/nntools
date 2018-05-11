@@ -1,0 +1,30 @@
+### HowTo Notary Node Alerts and Stats via Telegram Bot
+
+# Read
+https://github.com/rahiel/telegram-send#installation
+
+# Install PY/PIP3 + Telegram-Send
+$ sudo apt install python3-pip
+$ sudo pip3 install --upgrade pip
+$ sudo pip3 install telegram-send
+
+# Install Chronic for pipage
+$ sudo apt install moreutils
+
+# Read
+https://core.telegram.org/bots
+
+# Talk to the boss and create a new bot, note API-Key
+https://telegram.me/BotFather
+
+# Setup Telegram-Send (this is PM setup, for group or channel RTFM, its easy)
+$ telegram-send --configure
+
+# Try it
+$ telegram-send "BOO!"
+
+# Fixed monospace font
+$ telegram-send --pre "Hello World!"
+
+# For crontab use like this
+chronic ~/nntools/nodeMined 2>&1 | telegram-send --pre --stdin

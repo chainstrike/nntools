@@ -1,0 +1,37 @@
+### HowTo Notary Node Wallet Refresh
+
+# Send BTC away, all of it
+$ bitcoin-cli sendtoaddress "1xxx" "" "" true
+
+# Send KMD away, all of it
+$ komodo-cli sendtoaddress "Rxxx" "" "" true
+
+# Check balances and resend any until 0.00000000 on both wallets
+
+# Stop bitcoind, komodod & iguana
+
+# Rename both wallets
+$ mv ~/.komodo/wallet.dat ~/.komodo/wallet.dat.BIG
+$ mv ~/.bitcoin/wallet.dat ~/.bitcoin/wallet.dat.BIG
+
+# Start bitcoind and komodod (only with ./komodod no notary gen stuff)
+
+# Import privkeys without triggering rescan
+$ bitcoin-cli importprivkey "Kxxx" "" false
+$ komodo-cli  importprivkey "Uxxx" "" false
+
+# Validateaddress ISMINE=TRUE on both addresses
+
+# Send back ALL BTC and some KMD (I did 3,5,15)
+
+# When balance > 0 on KMD restart with notary flags
+
+# Check balances on both wallets
+
+# Check wallet sizes, should be minimal
+
+# Start iguana, dpow
+
+# Do fresh UTXO splits
+
+# Wait some time and verify notarizations are smooth
