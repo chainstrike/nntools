@@ -1,0 +1,15 @@
+cd ~/chips3
+git stash
+git checkout dev
+git pull
+
+CHIPS_ROOT=$(pwd)
+BDB_PREFIX="${CHIPS_ROOT}/db4"
+
+make clean
+
+./autogen.sh
+
+./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" -without-gui -without-miniupnpc
+
+make -j$(nproc)

@@ -1,0 +1,41 @@
+cd ~
+git clone https://github.com/jl777/GameCredits.git
+mv GameCredits game
+
+cd game
+git checkout master
+git pull
+
+GAMECREDITS_ROOT=$(pwd)
+GAMECREDITS_PREFIX="${GAMECREDITS_ROOT}/db4"
+mkdir -p $GAMECREDITS_PREFIX
+wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'
+echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef db-4.8.30.NC.tar.gz' | sha256sum -c
+tar -xzvf db-4.8.30.NC.tar.gz
+cd db-4.8.30.NC/build_unix/
+
+../dist/configure -enable-cxx -disable-shared -with-pic -prefix=$GAMECREDITS_PREFIX
+
+make -j4
+make install 
+
+cd ~/GameCredits
+./autogen.sh
+./configure LDFLAGS="-L${GAMECREDITS_PREFIX}/lib/" CPPFLAGS="-I${GAMECREDITS_PREFIX}/include/" -without-gui -without-miniupnpc --disable-tests --disable-bench --with-gui=no
+make -j4
+
+cd ~
+mkdir .gamecredits
+nano ~/.gamecredits/gamecredits.conf
+
+rpcuser=gameuser
+rpcpassword=passwordfkdjfkfdkf
+txindex=1
+daemon=1
+bind=127.0.0.1
+rpcbind=127.0.0.1
+
+sudo ln -sf /home/$USER/game/src/gamecredits-cli /usr/local/bin/gamecredits-cli
+sudo ln -sf /home/$USER/game/src/gamecreditsd /usr/local/bin/gamecreditsd
+sudo chmod +x /usr/local/bin/gamecredits-cli
+sudo chmod +x /usr/local/bin/gamecreditsd

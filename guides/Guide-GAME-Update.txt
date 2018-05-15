@@ -1,0 +1,20 @@
+cd ~/game
+git stash
+git checkout master
+git pull
+
+GAMECREDITS_ROOT=$(pwd)
+GAMECREDITS_PREFIX="${GAMECREDITS_ROOT}/db4"
+
+export PKG_CONFIG_PATH="$GAMECREDITS_ROOT/openssl_build/pkgconfig"
+export CXXFLAGS+=" -I$GAMECREDITS_ROOT/openssl_build/include/ -I${GAMECREDITS_PREFIX}/include/"
+export LDFLAGS+=" -L$GAMECREDITS_ROOT/openssl_build/lib -L${GAMECREDITS_PREFIX}/lib/ -static"
+export LIBS+="-ldl"
+
+make clean
+
+./autogen.sh
+
+./configure --with-gui=no --disable-tests --disable-bench --without-miniupnpc --enable-experimental-asm --enable-static --disable-shared
+
+make -j$(nproc)
