@@ -73,46 +73,42 @@ do
     then
             cd ~/komodo/src
             RESULT="$(./komodo-cli -rpcclienttimeout=15 listunspent | grep 0.0001 | wc -l)"
-            RESULT1="$(./komodo-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(./komodo-cli -rpcclienttimeout=15 getbalance)"
     fi
 
     if [ "$count" = "1" ]
     then
             RESULT="$(bitcoin-cli -rpcclienttimeout=15 listunspent | grep 0.0001 | wc -l)"
-            RESULT1="$(bitcoin-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(bitcoin-cli -rpcclienttimeout=15 getbalance)"
-
     fi
 
     if [ "$count" = "2" ]
     then
             RESULT="$(chips-cli -rpcclienttimeout=15 listunspent | grep 0.0001 | wc -l)"
-            RESULT1="$(chips-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(chips-cli -rpcclienttimeout=15 getbalance)"
-
     fi
 
     if [ "$count" -gt "2" ]
     then
             cd ~/komodo/src
             RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep 0.0001 | wc -l)"
-            RESULT1="$(./komodo-cli -ac_name=${processlist[count]} -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} getbalance)"
     fi
 
   fi
 
-  if [[ $RESULT == ?([-+])+([0-9])?(.*([0-9])) ]] ||
-     [[ $RESULT == ?(?([-+])*([0-9])).+([0-9]) ]]
+  if [ "$RESULT" -gt "100" ]
   then
-	printf  "U: $RESULT\t"
+    printf  "U: $RESULT\t"
+  else
+    printf  "U: !!! $RESULT\t"
   fi
 
-  if [[ $RESULT2 == ?([-+])+([0-9])?(.*([0-9])) ]] ||
-     [[ $RESULT2 == ?(?([-+])*([0-9])).+([0-9]) ]]
+  if (( $(echo "$RESULT2 > 0.2" | bc -l) ));
   then
-	printf  "B: $RESULT2\t\n"
+    printf  "B: $RESULT2\t\n"
+  else
+    printf  "B: !!! $RESULT2\t\n"
   fi
 
   RESULT=""
