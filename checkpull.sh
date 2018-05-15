@@ -1,22 +1,35 @@
 #!/bin/bash
 GR='\033[0;32m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-printf "\n\n${GR}>>>>>>> CHECKING KOMODO${NC}\n"
+printf "\n${GR}>>> CHECKING KOMODO${NC}\n"
 cd /home/$USER/komodo/src
-printf "${GR}>>>>>>> STASH${NC}\n"
 git stash
-printf "${GR}>>>>>>> CHECKOUT DEV${NC}\n"
 git checkout dev
-printf "${GR}>>>>>>> PULL${NC}\n"
 git pull
 
-printf "\n\n${GR}>>>>>>> CHECKING IGUANA${NC}\n"
+printf "\n${GR}>>>>>>> CHECKING IGUANA${NC}\n"
 cd /home/$USER/SuperNET/iguana
-printf "${GR}>>>>>>> STASH${NC}\n"
 git stash
-printf "${GR}>>>>>>> CHECKOUT DEV${NC}\n"
 git checkout dev
-printf "${GR}>>>>>>> PULL${NC}\n"
 git pull
-printf "\n\n"
+
+printf "\n${GR}>>>>>>> CHECKING CHIPS${NC}\n"
+cd /home/$USER/chips3
+git stash
+git checkout dev
+git pull
+
+printf "\n${GR}>>>>>>> CHECKING GAME${NC}\n"
+cd /home/$USER/game
+git stash
+git checkout master
+git pull
+
+printf "\n${GR}>>>>>>> CHECKING NANOMSG${NC}\n"
+cd /home/$USER/nanomsg
+git stash
+git checkout master
+git pull
+
+printf "\n"
