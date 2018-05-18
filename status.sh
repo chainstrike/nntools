@@ -31,6 +31,7 @@ processlist=(
 'komodod'
 'bitcoind'
 'chipsd'
+'gamecreditsd'
 'REVS'
 'SUPERNET'
 'DEX'
@@ -71,7 +72,7 @@ do
     echo -n -e "\t"
   fi
   if [ $(process_check $processlist[count]) ]
-  then 
+  then
     printf "Process: ${GREEN} Running ${NC}"
     if [ "$count" = "1" ]
     then
@@ -94,7 +95,14 @@ do
             RESULT2="$(chips-cli -rpcclienttimeout=15 getbalance)"
 
     fi
-    if [ "$count" -gt "3" ]
+    if [ "$count" = "4" ]
+    then
+            RESULT="$(gamecredits-cli -rpcclienttimeout=15 listunspent | grep .0001 | wc -l)"
+            RESULT1="$(gamecredits-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
+            RESULT2="$(gamecredits-cli -rpcclienttimeout=15 getbalance)"
+
+    fi
+    if [ "$count" -gt "4" ]
     then
             cd ~/komodo/src
             RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep .0001 | wc -l)"
