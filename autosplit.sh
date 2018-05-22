@@ -38,12 +38,12 @@ if [ "$UTXOS" -lt "$MINUTXOS" ]
 echo ""
 cd ~/game/src
 echo -n GAMECREDITS
-UTXOS="$(/usr/local/bin/gamecredits-cli listunspent | grep $UTXOSIZE | wc -l)"
+UTXOS="$(/usr/local/bin/gamecredits-cli listunspent | grep 0.001 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
      echo -n "SPLITFUNDING CHIPS"
-     RESULT="$(/home/$USER/nntools/acsplit.sh GAME $SPLITAMNT)"
+     RESULT="$(/home/$USER/nntools/acsplitgame.sh GAME $SPLITAMNT)"
      echo $RESULT
    fi
 echo ""

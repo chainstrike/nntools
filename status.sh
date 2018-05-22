@@ -57,6 +57,7 @@ processlist=(
 'BNTN'
 'CHAIN'
 'PRLPAY'
+'DSEC'
 )
 
 count=0
@@ -97,8 +98,8 @@ do
     fi
     if [ "$count" = "4" ]
     then
-            RESULT="$(gamecredits-cli -rpcclienttimeout=15 listunspent | grep .0001 | wc -l)"
-            RESULT1="$(gamecredits-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
+            RESULT="$(gamecredits-cli -rpcclienttimeout=15 listunspent | grep .001 | wc -l)"
+            RESULT1="$(gamecredits-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.001'|wc -l)"
             RESULT2="$(gamecredits-cli -rpcclienttimeout=15 getbalance)"
 
     fi
