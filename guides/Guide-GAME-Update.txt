@@ -1,4 +1,4 @@
-cd ~/game
+cd ~/GameCredits
 git stash
 git checkout master
 git pull

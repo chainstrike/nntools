@@ -42,7 +42,7 @@ sudo ufw allow 12466 # OOT
 sudo ufw allow 14357 # BNTN
 sudo ufw allow 15586 # CHAIN
 sudo ufw allow 9678  # PRLPAY
-
+sudo ufw allow 11556 # DSEC
 
 sudo ufw enable
 sudo ufw status verbose

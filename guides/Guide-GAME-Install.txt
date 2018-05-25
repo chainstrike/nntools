@@ -1,7 +1,5 @@
 cd ~
-git clone https://github.com/jl777/GameCredits.git
-mv GameCredits game
-
+git clone https://github.com/gamecredits-project/GameCredits
 cd game
 git checkout master
 git pull
@@ -16,13 +14,13 @@ cd db-4.8.30.NC/build_unix/
 
 ../dist/configure -enable-cxx -disable-shared -with-pic -prefix=$GAMECREDITS_PREFIX
 
-make -j4
+make -j8
 make install 
 
 cd ~/GameCredits
 ./autogen.sh
 ./configure LDFLAGS="-L${GAMECREDITS_PREFIX}/lib/" CPPFLAGS="-I${GAMECREDITS_PREFIX}/include/" -without-gui -without-miniupnpc --disable-tests --disable-bench --with-gui=no
-make -j4
+make -j8
 
 cd ~
 mkdir .gamecredits
@@ -35,7 +33,7 @@ daemon=1
 bind=127.0.0.1
 rpcbind=127.0.0.1
 
-sudo ln -sf /home/$USER/game/src/gamecredits-cli /usr/local/bin/gamecredits-cli
-sudo ln -sf /home/$USER/game/src/gamecreditsd /usr/local/bin/gamecreditsd
+sudo ln -sf /home/$USER/GameCredits/src/gamecredits-cli /usr/local/bin/gamecredits-cli
+sudo ln -sf /home/$USER/GameCredits/src/gamecreditsd /usr/local/bin/gamecreditsd
 sudo chmod +x /usr/local/bin/gamecredits-cli
 sudo chmod +x /usr/local/bin/gamecreditsd
