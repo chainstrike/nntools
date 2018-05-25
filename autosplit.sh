@@ -40,10 +40,10 @@ cd ~/GameCredits/src
 echo -n GAMECREDITS
 UTXOS="$(/usr/local/bin/gamecredits-cli listunspent | grep 0.001 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
-if [ "$UTXOS" -lt "$MINUTXOS" ]
+if [ "$UTXOS" -lt "30" ]
    then
      echo -n "SPLITFUNDING CHIPS"
-     RESULT="$(/home/$USER/nntools/acsplitgame.sh GAME 10)"
+     RESULT="$(/home/$USER/nntools/acsplitgame.sh GAME 30)"
      echo $RESULT
    fi
 echo ""
