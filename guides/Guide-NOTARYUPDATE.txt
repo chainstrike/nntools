@@ -1,0 +1,96 @@
+### Guide Notary Node HowTo Update
+
+sudo apt update && sudo apt upgrade
+sudo apt autoclean
+sudo apt autoremove
+
+### Check for updates
+~/nntools/checkpull.sh
+
+### Lets do it
+pkill -15 iguana
+
+### If GAME pull
+screen -r (-S) game
+### -> GOTO GUIDE GAME Update
+
+### If CHIPS pull
+screen -r (-S) chips
+### -> GOTO GUIDE CHIPS Update
+
+### If NANOMSG pull
+### -> GOTO GUIDE NANOMSG Update
+
+### Stop all the things
+~/komodo/src/fiat-cli stop
+komodo-cli stop
+bitcoin-cli stop
+chips-cli stop
+gamecredits-cli stop
+### Wait until all PIDs are gone
+watch pidof komodod
+
+### Reboot (optional)
+sudo reboot
+
+### Start basics
+bitcoind -deprecatedrpc=estimatefee
+chipsd -pubkey="0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153"
+gamecreditsd -pubkey="0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153"
+
+### Start Komodo
+screen -r (-S) komodo
+cd ~/komodo
+make clean
+zcutil/build.sh -j8
+cd src
+~/komodo/src/komodod -gen -genproclimit=1 -notary -pubkey=0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153
+CTRL+A+D
+watch komodo-cli getinfo
+### Wait until loaded
+
+### Start Chains
+screen -r (-S) chains
+nano assetchains
+### Modify lines:  delay=5, comment BEER/PIZZA, save
+cd ~/komodo/src
+./assetchains
+### Wait until all are loaded
+cd ~/komodo/src
+./fiat-cli getbalance
+
+### If new chains importprivkey to new chains or use brute force
+./fiat-cli importprivkey Uxxxxxxx
+
+### If new chains need to add new ports to UFW, maybe already in openports because jeezy is cool
+sudo ~/nntools/openports.sh
+
+### Start IGUANA
+screen -r (-S) iguana
+cd ~/SuperNET/iguana
+git pull
+nano m_notary_run
+### Modify file like this:
+### line: stdbuf -oL $1 ../agents/iguana notary  & #> iguana.log 2> error.log  &
+### into: stdbuf -oL $1 ../agents/iguana notary_nosplit  & #> iguana.log 2> error.log  &
+### remove all addnotary curls after sleep 3 and insert these
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"78.47.196.146\"}"
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"164.132.202.176\"}"
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"139.99.144.54\"}"
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"139.99.148.209\"}"
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"139.99.148.62\"}"
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"221.121.144.138\"}"
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"43.245.162.106\"}"
+### Save and boot iguana
+./m_notary
+### Wait until loaded (CONNECT messages)
+CTRL+A+D
+
+### Run DPOW call
+screen -r (-S) dpow
+cd ~/komodo/src
+./dpowassets
+### Wait until all say success
+CTRL+A+D
+
+### Done
