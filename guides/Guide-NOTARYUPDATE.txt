@@ -56,6 +56,7 @@ nano assetchains
 cd ~/komodo/src
 ./assetchains
 ### Wait until all are loaded
+CTRL+A+D
 cd ~/komodo/src
 ./fiat-cli getbalance
 
