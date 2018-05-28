@@ -25,4 +25,6 @@ coinlist=(
 'CHAIN'
 'PRLPAY'
 'DSEC'
+'GLXT'
+'EQL'
 )
