@@ -58,6 +58,8 @@ processlist=(
 'CHAIN'
 'PRLPAY'
 'DSEC'
+'GLXT'
+'EQL'
 )
 
 count=0
