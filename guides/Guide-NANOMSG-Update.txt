@@ -1,0 +1,5 @@
+git pull
+cmake . -DNN_TESTS=OFF -DNN_ENABLE_DOC=OFF
+make -j2
+sudo make install
+sudo ldconfig
