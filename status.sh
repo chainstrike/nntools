@@ -60,6 +60,7 @@ processlist=(
 'DSEC'
 'GLXT'
 'EQL'
+'ZILLA'
 )
 
 count=0
