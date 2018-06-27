@@ -61,6 +61,8 @@ processlist=(
 'GLXT'
 'EQL'
 'ZILLA'
+'RFOX'
+'VRSC'
 )
 
 count=0
