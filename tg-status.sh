@@ -26,6 +26,7 @@ processlist=(
 'komodod'
 'bitcoind'
 'chipsd'
+'gamecreditsd'
 'REVS'
 'SUPERNET'
 'DEX'
@@ -51,6 +52,12 @@ processlist=(
 'BNTN'
 'CHAIN'
 'PRLPAY'
+'DSEC'
+'GLXT'
+'EQL'
+'ZILLA'
+'RFOX'
+'VRSC'
 )
 
 count=0
@@ -88,7 +95,13 @@ do
             RESULT2="$(chips-cli -rpcclienttimeout=15 getbalance)"
     fi
 
-    if [ "$count" -gt "2" ]
+    if [ "$count" = "3" ]
+    then
+            RESULT="$(gamecredits-cli -rpcclienttimeout=15 listunspent | grep 0.001 | wc -l)"
+            RESULT2="$(gamecredits-cli -rpcclienttimeout=15 getbalance)"
+    fi
+
+    if [ "$count" -gt "3" ]
     then
             cd ~/komodo/src
             RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep 0.0001 | wc -l)"
@@ -97,14 +110,14 @@ do
 
   fi
 
-  if [ "$RESULT" -gt "100" ]
+  if [ "$RESULT" -gt "50" ]
   then
     printf  "U: $RESULT\t"
   else
     printf  "U: !!! $RESULT\t"
   fi
 
-  if (( $(echo "$RESULT2 > 0.2" | bc -l) ));
+  if (( $(echo "$RESULT2 > 0.1" | bc -l) ));
   then
     printf  "B: $RESULT2\t\n"
   else
