@@ -26,6 +26,12 @@ git stash
 git checkout master
 git pull
 
+printf "\n${GR}>>>>>>> CHECKING VERUS${NC}\n"
+cd /home/$USER/VerusCoin
+git stash
+git checkout dev
+git pull
+
 printf "\n${GR}>>>>>>> CHECKING NANOMSG${NC}\n"
 cd /home/$USER/nanomsg
 git stash
