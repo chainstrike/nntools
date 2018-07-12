@@ -27,5 +27,6 @@ if ($disperse > 0) {
    my $cmd = "$cli sendtoaddress $self 10.0";
    print "$cmd\n";
    $cmd = $ENV{HOME} . "/nntools/autosplit.sh";
-   print "sleep 180; $cmd\n";
+   # sometimes an f4a period can make blocks take a while
+   print "sleep 300; $cmd\n";
 }
