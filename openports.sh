@@ -48,6 +48,7 @@ sudo ufw allow 10305 # EQL
 sudo ufw allow 10040 # ZILLA
 sudo ufw allow 32268 # RFOX
 sudo ufw allow 27485 # VRSC
+sudo ufw allow 11539 # SEC
 
 sudo ufw enable
 sudo ufw status verbose

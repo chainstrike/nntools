@@ -63,6 +63,7 @@ processlist=(
 'ZILLA'
 'RFOX'
 'VRSC'
+'SEC'
 )
 
 count=0
