@@ -22,11 +22,15 @@ screen -r (-S) chips
 ### -> GOTO GUIDE NANOMSG Update
 
 ### Stop all the things
+
+cd ~/komodo/src
 ~/komodo/src/fiat-cli stop
 komodo-cli stop
 bitcoin-cli stop
 chips-cli stop
 gamecredits-cli stop
+~/VerusCoin/src/fiat/verus stop
+
 ### Wait until all PIDs are gone
 watch pidof komodod
 
@@ -37,6 +41,11 @@ sudo reboot
 bitcoind -deprecatedrpc=estimatefee
 chipsd -pubkey="0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153"
 gamecreditsd -pubkey="0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153"
+
+## Go to verus screen
+screen -dr verus
+cd ~/VerusCoin/src/
+./verusd -pubkey=0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153
 
 ### Start Komodo
 screen -r (-S) komodo
