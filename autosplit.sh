@@ -5,7 +5,7 @@ MINUTXOS=150
 # Amount of UTXOs to create at one time
 SPLITAMNT=50
 # Size of UTXOs
-UTXOSIZE=0.0001000
+UTXOSIZE=0.00010000
 
 # Load coinlist from file
 source /home/$USER/nntools/coinlist.split

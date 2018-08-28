@@ -85,27 +85,27 @@ do
     if [ "$count" = "1" ]
     then
             cd ~/komodo/src
-            RESULT="$(./komodo-cli -rpcclienttimeout=15 listunspent | grep .0001 | wc -l)"
+            RESULT="$(./komodo-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
             RESULT1="$(./komodo-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(./komodo-cli -rpcclienttimeout=15 getbalance)"
     fi
     if [ "$count" = "2" ]
     then
-            RESULT="$(bitcoin-cli -rpcclienttimeout=15 listunspent | grep .0001 | wc -l)"
+            RESULT="$(bitcoin-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
             RESULT1="$(bitcoin-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(bitcoin-cli -rpcclienttimeout=15 getbalance)"
 
     fi
     if [ "$count" = "3" ]
     then
-            RESULT="$(chips-cli -rpcclienttimeout=15 listunspent | grep .0001 | wc -l)"
+            RESULT="$(chips-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
             RESULT1="$(chips-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(chips-cli -rpcclienttimeout=15 getbalance)"
 
     fi
     if [ "$count" = "4" ]
     then
-            RESULT="$(gamecredits-cli -rpcclienttimeout=15 listunspent | grep .001 | wc -l)"
+            RESULT="$(gamecredits-cli -rpcclienttimeout=15 listunspent | grep .00100000 | wc -l)"
             RESULT1="$(gamecredits-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.001'|wc -l)"
             RESULT2="$(gamecredits-cli -rpcclienttimeout=15 getbalance)"
 
@@ -113,7 +113,7 @@ do
     if [ "$count" -gt "4" ]
     then
             cd ~/komodo/src
-            RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep .0001 | wc -l)"
+            RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep .00010000 | wc -l)"
             RESULT1="$(./komodo-cli -ac_name=${processlist[count]} -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} getbalance)"
     fi
