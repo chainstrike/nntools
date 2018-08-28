@@ -59,6 +59,7 @@ processlist=(
 'RFOX'
 'VRSC'
 'SEC'
+'CCL'
 )
 
 count=0
