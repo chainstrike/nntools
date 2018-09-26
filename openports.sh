@@ -15,6 +15,7 @@ sudo ufw allow 7775  # Iguana port
 
 sudo ufw allow 17775 # Iguana (2018) port
 
+sudo ufw allow 8888  # HUSH
 sudo ufw allow 10195 # REVS asset chain port
 sudo ufw allow 11340 # SUPERNET asset chain port
 sudo ufw allow 11889 # DEX asset chain port
@@ -50,6 +51,8 @@ sudo ufw allow 32268 # RFOX
 sudo ufw allow 27485 # VRSC
 sudo ufw allow 11539 # SEC
 sudo ufw allow 20848 # CCL
+sudo ufw allow 45452 # PIRATE
+sudo ufw allow 20730 # MGNX
 
 sudo ufw enable
 sudo ufw status verbose

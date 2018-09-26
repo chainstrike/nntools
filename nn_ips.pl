@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 #my $traceroute = "traceroute -I -n";
-my $traceroute = "traceroute -n";
+my $traceroute = "traceroute -n -m10";
 my $ips = {};
 while (<>) {
 	my $ip;
