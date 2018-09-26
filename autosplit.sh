@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Minimum number of UTXOs to maintain
-MINUTXOS=150
+MINUTXOS=100
 # Amount of UTXOs to create at one time
-SPLITAMNT=50
+SPLITAMNT=100
 # Size of UTXOs
 UTXOSIZE=0.00010000
 
@@ -14,6 +14,8 @@ source /home/$USER/nntools/coinlist.split
 
 # Manual Check of BTC, CHIPS, KMD
 echo "Checking BTC, CHIPS, KMD"
+
+####### BTC
 cd ~
 echo -n BTC
 UTXOS="$(/usr/bin/bitcoin-cli listunspent | grep $UTXOSIZE | wc -l)"
@@ -25,6 +27,8 @@ if [ "$UTXOS" -lt "$MINUTXOS" ]
      echo $RESULT
    fi
 echo ""
+
+####### CHIPS
 cd ~/chips3/src
 echo -n CHIPS
 UTXOS="$(/usr/local/bin/chips-cli listunspent | grep $UTXOSIZE | wc -l)"
@@ -36,17 +40,21 @@ if [ "$UTXOS" -lt "$MINUTXOS" ]
      echo $RESULT
    fi
 echo ""
+
+####### GAME
 cd ~/GameCredits/src
 echo -n GAMECREDITS
 UTXOS="$(/usr/local/bin/gamecredits-cli listunspent | grep 0.001 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "50" ]
    then
-     echo -n "SPLITFUNDING CHIPS"
+     echo -n "SPLITFUNDING GAME"
      RESULT="$(/home/$USER/nntools/acsplitgame.sh GAME 30)"
      echo $RESULT
    fi
 echo ""
+
+####### KMD
 cd ~/komodo/src
 echo -n KMD
 UTXOS="$(/usr/local/bin/komodo-cli listunspent | grep $UTXOSIZE | wc -l)"
@@ -54,10 +62,24 @@ echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
      echo -n " - SPLITFUNDING KMD"
-     RESULT="$(/home/$USER/nntools/acsplit.sh KMD 100)"
+     RESULT="$(/home/$USER/nntools/acsplit.sh KMD $SPLITAMNT)"
      echo $RESULT
    fi
 echo ""
+
+####### HUSH
+cd ~/komodo/src
+echo -n KMD
+UTXOS="$(/home/$USER/hush/src listunspent | grep $UTXOSIZE | wc -l)"
+echo -n -e '\t\t';echo -n "$UTXOS"
+if [ "$UTXOS" -lt "$MINUTXOS" ]
+   then
+     echo -n " - SPLITFUNDING HUSH"
+     RESULT="$(/home/$USER/nntools/acsplit.sh HUSH $SPLITAMNT)"
+     echo $RESULT
+   fi
+echo ""
+
 echo "Checking Other Coins"
 
 # Check the rest of the coins using a loop

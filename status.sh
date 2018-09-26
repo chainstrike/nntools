@@ -32,6 +32,7 @@ processlist=(
 'bitcoind'
 'chipsd'
 'gamecreditsd'
+'HUSH'
 'REVS'
 'SUPERNET'
 'DEX'
@@ -65,6 +66,8 @@ processlist=(
 'VRSC'
 'SEC'
 'CCL'
+'PIRATE'
+'MGNX'
 )
 
 count=0
@@ -110,7 +113,14 @@ do
             RESULT2="$(gamecredits-cli -rpcclienttimeout=15 getbalance)"
 
     fi
-    if [ "$count" -gt "4" ]
+    if [ "$count" = "5" ]
+    then
+            RESULT="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15 listunspent | grep .00100000 | wc -l)"
+            RESULT1="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.001'|wc -l)"
+            RESULT2="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15 getbalance)"
+
+    fi
+    if [ "$count" -gt "5" ]
     then
             cd ~/komodo/src
             RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep .00010000 | wc -l)"
