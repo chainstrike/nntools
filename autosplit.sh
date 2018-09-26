@@ -69,8 +69,8 @@ echo ""
 
 ####### HUSH
 cd ~/komodo/src
-echo -n KMD
-UTXOS="$(/home/$USER/hush/src listunspent | grep $UTXOSIZE | wc -l)"
+echo -n HUSH
+UTXOS="$(/home/$USER/hush/src/hush-cli listunspent | grep $UTXOSIZE | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
