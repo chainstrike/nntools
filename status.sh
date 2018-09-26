@@ -115,8 +115,8 @@ do
     fi
     if [ "$count" = "5" ]
     then
-            RESULT="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15 listunspent | grep .00100000 | wc -l)"
-            RESULT1="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.001'|wc -l)"
+            RESULT="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
+            RESULT1="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
             RESULT2="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15 getbalance)"
 
     fi
@@ -131,7 +131,7 @@ do
     if [[ $RESULT == ?([-+])+([0-9])?(.*([0-9])) ]] ||
        [[ $RESULT == ?(?([-+])*([0-9])).+([0-9]) ]]
     then
-    if [ "$RESULT" -lt "70" ]
+    if [ "$RESULT" -lt "50" ]
     then
     printf  " - Avail UTXOs: ${RED}$RESULT\t${NC}"
     else
@@ -142,7 +142,7 @@ do
  if [[ $RESULT1 == ?([-+])+([0-9])?(.*([0-9])) ]] ||
        [[ $RESULT1 == ?(?([-+])*([0-9])).+([0-9]) ]]
     then
-    if [ "$RESULT1" -gt "70" ]
+    if [ "$RESULT1" -gt "0" ]
     then
     printf  " - Dust UTXOs: ${RED}$RESULT1\t${NC}"
     else

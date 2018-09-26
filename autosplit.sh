@@ -44,7 +44,7 @@ echo ""
 ####### GAME
 cd ~/GameCredits/src
 echo -n GAMECREDITS
-UTXOS="$(/usr/local/bin/gamecredits-cli listunspent | grep 0.001 | wc -l)"
+UTXOS="$(/usr/local/bin/gamecredits-cli listunspent | grep 0.00100000 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "50" ]
    then
