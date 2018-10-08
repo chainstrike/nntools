@@ -5,13 +5,19 @@ NC='\033[0m'
 printf "\n${GR}>>> CHECKING KOMODO${NC}\n"
 cd /home/$USER/komodo/src
 git stash
-git checkout beta
+git checkout dev
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING IGUANA${NC}\n"
 cd /home/$USER/SuperNET/iguana
 git stash
-git checkout beta
+git checkout dev
+git pull
+
+printf "\n${GR}>>>>>>> CHECKING HUSH${NC}\n"
+cd /home/$USER/hush
+git stash
+git checkout dev
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING CHIPS${NC}\n"
@@ -21,7 +27,7 @@ git checkout dev
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING GAME${NC}\n"
-cd /home/$USER/game
+cd /home/$USER/GameCredits
 git stash
 git checkout master
 git pull
@@ -30,6 +36,12 @@ printf "\n${GR}>>>>>>> CHECKING VERUS${NC}\n"
 cd /home/$USER/VerusCoin
 git stash
 git checkout dev
+git pull
+
+printf "\n${GR}>>>>>>> CHECKING EMC2${NC}\n"
+cd /home/$USER/einsteinium
+git stash
+git checkout master
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING NANOMSG${NC}\n"
