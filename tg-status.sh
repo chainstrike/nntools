@@ -28,6 +28,7 @@ processlist=(
 'chipsd'
 'gamecreditsd'
 'HUSH'
+'EMC2'
 'REVS'
 'SUPERNET'
 'DEX'
@@ -113,7 +114,14 @@ do
 
     fi
 
-    if [ "$count" -gt "4" ]
+    if [ "$count" = "5" ]
+    then
+            RESULT="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
+            RESULT2="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15 getbalance)"
+
+    fi
+
+    if [ "$count" -gt "5" ]
     then
             cd ~/komodo/src
             RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep 0.00010000 | wc -l)"

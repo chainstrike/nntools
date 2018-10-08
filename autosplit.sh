@@ -80,6 +80,20 @@ if [ "$UTXOS" -lt "$MINUTXOS" ]
    fi
 echo ""
 
+####### EMC2
+cd ~/einsteinium/src
+echo -n EMC2
+UTXOS="$(/home/$USER/einsteinium/src/einsteinium-cli listunspent | grep $UTXOSIZE | wc -l)"
+echo -n -e '\t\t';echo -n "$UTXOS"
+if [ "$UTXOS" -lt "$MINUTXOS" ]
+   then
+     echo -n " - SPLITFUNDING HUSH"
+     RESULT="$(/home/$USER/nntools/acsplit.sh EMC2 $SPLITAMNT)"
+     echo $RESULT
+   fi
+echo ""
+
+
 echo "Checking Other Coins"
 
 # Check the rest of the coins using a loop
