@@ -85,10 +85,10 @@ cd ~/einsteinium/src
 echo -n EMC2
 UTXOS="$(/home/$USER/einsteinium/src/einsteinium-cli listunspent | grep $UTXOSIZE | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
-if [ "$UTXOS" -lt "$MINUTXOS" ]
+if [ "$UTXOS" -lt "50" ]
    then
      echo -n " - SPLITFUNDING HUSH"
-     RESULT="$(/home/$USER/nntools/acsplit.sh EMC2 $SPLITAMNT)"
+     RESULT="$(/home/$USER/nntools/acsplitgame.sh EMC2 50)"
      echo $RESULT
    fi
 echo ""
