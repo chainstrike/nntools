@@ -83,7 +83,7 @@ echo ""
 ####### EMC2
 cd ~/einsteinium/src
 echo -n EMC2
-UTXOS="$(/home/$USER/einsteinium/src/einsteinium-cli listunspent | grep $UTXOSIZE | wc -l)"
+UTXOS="$(/home/$USER/einsteinium/src/einsteinium-cli listunspent | grep 0.00100000 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "50" ]
    then

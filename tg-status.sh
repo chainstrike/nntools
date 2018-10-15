@@ -116,7 +116,7 @@ do
 
     if [ "$count" = "5" ]
     then
-            RESULT="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
+            RESULT="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15 listunspent | grep .00100000 | wc -l)"
             RESULT2="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15 getbalance)"
 
     fi

@@ -123,8 +123,8 @@ do
     fi
     if [ "$count" = "6" ]
     then
-            RESULT="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
-            RESULT1="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
+            RESULT="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15 listunspent | grep .00100000 | wc -l)"
+            RESULT1="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.001'|wc -l)"
             RESULT2="$(/home/$USER/einsteinium/src/einsteinium-cli -rpcclienttimeout=15 getbalance)"
 
     fi
