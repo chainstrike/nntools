@@ -69,6 +69,9 @@ processlist=(
 'CCL'
 'PIRATE'
 'MGNX'
+'PGT'
+'KMDICE'
+'DION'
 )
 
 count=0
