@@ -53,6 +53,9 @@ sudo ufw allow 11539 # SEC
 sudo ufw allow 20848 # CCL
 sudo ufw allow 45452 # PIRATE
 sudo ufw allow 20730 # MGNX
+sudo ufw allow 46704 # PGT
+sudo ufw allow 30176 # KMDICE
+sudo ufw allow 23894 # DION
 
 sudo ufw enable
 sudo ufw status verbose
