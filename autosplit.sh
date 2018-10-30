@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Minimum number of UTXOs to maintain
-MINUTXOS=100
+MINUTXOS=50
 # Amount of UTXOs to create at one time
-SPLITAMNT=100
+SPLITAMNT=50
 # Size of UTXOs
 UTXOSIZE=0.00010000
 
@@ -46,7 +46,7 @@ cd ~/GameCredits/src
 echo -n GAMECREDITS
 UTXOS="$(/usr/local/bin/gamecredits-cli listunspent | grep 0.00100000 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
-if [ "$UTXOS" -lt "50" ]
+if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
      echo -n "SPLITFUNDING GAME"
      RESULT="$(/home/$USER/nntools/acsplitgame.sh GAME 30)"
@@ -85,10 +85,10 @@ cd ~/einsteinium/src
 echo -n EMC2
 UTXOS="$(/home/$USER/einsteinium/src/einsteinium-cli listunspent | grep 0.00100000 | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
-if [ "$UTXOS" -lt "50" ]
+if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
      echo -n " - SPLITFUNDING HUSH"
-     RESULT="$(/home/$USER/nntools/acsplitgame.sh EMC2 50)"
+     RESULT="$(/home/$USER/nntools/acsplitgame.sh EMC2 $SPLITAMNT)"
      echo $RESULT
    fi
 echo ""
