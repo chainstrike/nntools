@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Minimum number of UTXOs to maintain
-MINUTXOS=50
+MINUTXOS=30
 # Amount of UTXOs to create at one time
-SPLITAMNT=50
+SPLITAMNT=20
 # Size of UTXOs
 UTXOSIZE=0.00010000
 
@@ -49,7 +49,7 @@ echo -n -e '\t\t';echo -n "$UTXOS"
 if [ "$UTXOS" -lt "$MINUTXOS" ]
    then
      echo -n "SPLITFUNDING GAME"
-     RESULT="$(/home/$USER/nntools/acsplitgame.sh GAME 30)"
+     RESULT="$(/home/$USER/nntools/acsplitgame.sh GAME 20)"
      echo $RESULT
    fi
 echo ""
