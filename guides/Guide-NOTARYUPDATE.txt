@@ -98,7 +98,7 @@ CTRL+A+D
 
 ### Run DPOW call
 screen -r (-S) dpow
-cd ~/komodo/src
+cd ~/SuperNet/iguana
 ./dpowassets
 ### Wait until all say success
 CTRL+A+D
