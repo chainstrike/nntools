@@ -133,7 +133,7 @@ do
 
   fi
 
-  if [ "$RESULT" -gt "50" ]
+  if [ "$RESULT" -gt "30" ]
   then
     printf  "U: $RESULT\t"
   else

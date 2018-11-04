@@ -142,7 +142,7 @@ do
     if [[ $RESULT == ?([-+])+([0-9])?(.*([0-9])) ]] ||
        [[ $RESULT == ?(?([-+])*([0-9])).+([0-9]) ]]
     then
-    if [ "$RESULT" -lt "50" ]
+    if [ "$RESULT" -lt "30" ]
     then
     printf  " - Avail UTXOs: ${RED}$RESULT\t${NC}"
     else
@@ -165,7 +165,7 @@ do
     if [[ $RESULT2 == ?([-+])+([0-9])?(.*([0-9])) ]] ||
        [[ $RESULT2 == ?(?([-+])*([0-9])).+([0-9]) ]]
     then
-    if (( $(echo "$RESULT2 > 0.2" | bc -l) ));
+    if (( $(echo "$RESULT2 > 0.1" | bc -l) ));
     then
     printf  " - Avail Funds: ${GREEN}$RESULT2\t${NC}\n"
  #   printf "\t - Current Block: X\t - Longest Chain: X - Last Notarized: X\n"
