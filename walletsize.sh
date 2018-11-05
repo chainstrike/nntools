@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Find out the size of KMD and other KMD assetchains
 
-# Credits @decker
+# Credits decker, jeezy
 
 RESET="\033[0m"
 BLACK="\033[30m"
