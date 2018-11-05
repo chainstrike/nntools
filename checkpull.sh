@@ -35,7 +35,7 @@ git pull
 printf "\n${GR}>>>>>>> CHECKING VERUS${NC}\n"
 cd /home/$USER/VerusCoin
 git stash
-git checkout dev
+git checkout master
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING EMC2${NC}\n"
