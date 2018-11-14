@@ -67,6 +67,7 @@ processlist=(
 'PGT'
 'KMDICE'
 'DION'
+'ZEX'
 )
 
 count=0
