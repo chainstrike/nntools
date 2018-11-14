@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Minimum number of UTXOs to maintain
@@ -9,6 +10,21 @@ UTXOSIZE=0.00010000
 
 # Load coinlist from file
 source /home/$USER/nntools/coinlist.split
+
+# Never do these (see listassetchains / assetchains.json)
+ignore=(
+        KMD
+        BTC
+        HUSH
+        CHIPS
+        GAME
+        VRSC
+        EMC2
+        KMDICE
+        VOTE2018
+        PIZZA
+        BEER
+)
 
 
 
@@ -99,19 +115,18 @@ echo "Checking Other Coins"
 # Check the rest of the coins using a loop
 # Feel free to add coins as required here
 
-count=0
-while [ "x${coinlist[count]}" != "x" ]
-do
-  echo -n "${coinlist[count]}"
-  UTXOS="$(/usr/local/bin/komodo-cli -ac_name=${coinlist[count]} listunspent | grep $UTXOSIZE | wc -l)"
+# LOOP thru assetchains
+$HOME/komodo/src/listassetchains | while read list; do
+  if [[ "${ignore[@]}" =~ "${list}" ]]; then
+    continue
+  fi
+  echo -n "${list}"
+  UTXOS="$(/usr/local/bin/komodo-cli -ac_name=${list} listunspent | grep $UTXOSIZE | wc -l)"
   echo -n -e '\t\t';echo -n "$UTXOS"
-  if [ "$UTXOS" -lt "$MINUTXOS" ]
-     then
-       echo -n " - SPLIT FUNDING: ${coinlist[count]}"
-       RESULT="$(/home/$USER/nntools/acsplit.sh ${coinlist[count]} $SPLITAMNT)"
-       echo $RESULT
-     fi
-  count=$(( $count +1 ))
+  if [ "$UTXOS" -lt "$MINUTXOS" ]; then
+	echo -n " - SPLIT FUNDING: ${list}"
+	RESULT="$(/home/$USER/nntools/acsplit.sh ${list} $SPLITAMNT)"
+	echo $RESULT
+  fi
   echo ""
 done
-echo "FINISHED"
