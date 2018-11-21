@@ -25,4 +25,4 @@ while (<>) {
 my @sorted = sort { $ips->{$a} <=> $ips->{$b} } keys %$ips;
 
 print "Closest NN IPs:\n";
-print join("\n", @sorted) . "\n";
+print join("\n", "curl --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"iguana\\\",\\\"method\\\":\\\"addnotary\\\",\\\"ipaddr\\\":\\\"". @sorted) . "\\\"}\"\n";

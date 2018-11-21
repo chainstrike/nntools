@@ -18,9 +18,9 @@ ignore=(
         HUSH
         CHIPS
         GAME
-        VRSC
+#        VRSC
         EMC2
-        KMDICE
+#        KMDICE
         VOTE2018
         PIZZA
         BEER
@@ -130,3 +130,14 @@ $HOME/komodo/src/listassetchains | while read list; do
   fi
   echo ""
 done
+
+  echo -n "VRSC"
+  UTXOS="$(/usr/local/bin/komodo-cli -ac_name=VRSC listunspent | grep $UTXOSIZE | wc -l)"
+  echo -n -e '\t\t';echo -n "$UTXOS"
+  if [ "$UTXOS" -lt "$MINUTXOS" ]; then
+        echo -n " - SPLIT FUNDING: VRSC"
+        RESULT="$(/home/$USER/nntools/acsplit.sh VRSC $SPLITAMNT)"
+        echo $RESULT
+  fi
+  echo ""
+
