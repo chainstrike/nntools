@@ -75,10 +75,10 @@ cd ~/komodo/src
 echo -n KMD
 UTXOS="$(/usr/local/bin/komodo-cli listunspent | grep $UTXOSIZE | wc -l)"
 echo -n -e '\t\t';echo -n "$UTXOS"
-if [ "$UTXOS" -lt "$MINUTXOS" ]
+if [ "$UTXOS" -lt "77" ]
    then
      echo -n " - SPLITFUNDING KMD"
-     RESULT="$(/home/$USER/nntools/acsplit.sh KMD $SPLITAMNT)"
+     RESULT="$(/home/$USER/nntools/acsplit.sh KMD 77)"
      echo $RESULT
    fi
 echo ""
