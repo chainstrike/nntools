@@ -48,7 +48,7 @@ cd ~/VerusCoin/src/
 ./verusd -pubkey=0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153
 
 ### Start Komodo
-screen -r (-S) komodo
+screen -dr komodo
 cd ~/komodo
 make clean
 zcutil/build.sh -j8
@@ -59,7 +59,7 @@ watch komodo-cli getinfo
 ### Wait until loaded
 
 ### Start Chains
-screen -r (-S) chains
+screen -dr chains
 nano assetchains
 ### Modify lines:  delay=5, comment BEER/PIZZA, save
 cd ~/komodo/src
@@ -76,7 +76,7 @@ cd ~/komodo/src
 sudo ~/nntools/openports.sh
 
 ### Start IGUANA
-screen -r (-S) iguana
+screen -dr iguana
 cd ~/SuperNET/iguana
 git pull
 
@@ -109,7 +109,7 @@ curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"ad
 CTRL+A+D
 
 ### Run DPOW call
-screen -r (-S) dpow
+screen -dr dpow
 cd ~/SuperNet/iguana
 ./dpowassets
 ### Wait until all say success
