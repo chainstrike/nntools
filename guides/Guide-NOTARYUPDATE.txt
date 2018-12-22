@@ -80,6 +80,9 @@ screen -dr iguana
 cd ~/SuperNET/iguana
 git pull
 
+# rebuild (if necessary)
+./m_unix
+
 nano m_notary_run
 ### Modify file like this:
 ### remove all addnotary curls after sleep 3 and insert these
