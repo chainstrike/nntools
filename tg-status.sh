@@ -68,6 +68,8 @@ processlist=(
 'KMDICE'
 'DION'
 'ZEX'
+'KSB'
+'OUR'
 )
 
 count=0

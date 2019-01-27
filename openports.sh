@@ -56,6 +56,9 @@ sudo ufw allow 20730 # MGNX
 sudo ufw allow 46704 # PGT
 sudo ufw allow 30176 # KMDICE
 sudo ufw allow 23894 # DION
+sudo ufw allow 26476 # ZEX
+sudo ufw allow 21065 # KSB
+sudo ufw allow 45671 # OUR
 
 sudo ufw enable
 sudo ufw status verbose

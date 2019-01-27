@@ -74,6 +74,7 @@ processlist=(
 'DION'
 'ZEX'
 'KSB'
+'OUR'
 )
 
 count=0
