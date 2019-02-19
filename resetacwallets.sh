@@ -46,6 +46,8 @@ komodo_daemon="$KMD_PATH/komodod"
 
 # Never do these (see listassetchains / assetchains.json)
 ignore_list=(
+	REVS
+	MGNX
         KMD
         BTC
         HUSH
@@ -165,7 +167,7 @@ function get_balance()
         log_print "$message"
     else
         BALANCE="0.00000000"
-            message=$(echo -e "(${RED}$coin${RESET}) $BALANCE")
+        message=$(echo -e "(${RED}$coin${RESET}) $BALANCE")
         log_print "$message"
         exit
     fi
@@ -185,7 +187,7 @@ function send_balance()
         coin=$1
         asset=" -ac_name=$1"
     else
-    coin="KMD"
+        coin="KMD"
         asset=""
     fi
 
@@ -316,22 +318,28 @@ function reset_wallet() {
 
     wait_for_daemon $coin
     log_print "Importing private key ... "
+	log_print "$komodo_cli $asset importprivkey $NN_PRIVKEY __ false"
     $komodo_cli $asset importprivkey $NN_PRIVKEY "" false
     log_print "Rescanning from ht.$height ... "
-    $komodo_cli $asset z_importkey "$NN_ZKEY" \"yes\" $height
+	log_print "$komodo_cli $asset z_importkey $NN_ZKEY yes $height"
+    $komodo_cli $asset z_importkey "$NN_ZKEY" yes $height
     log_print "Done reset ($coin)"
-
 }
 
 ####### MAIN #######
 curdir=$(pwd)
 init_colors
 # LOOP thru assetchains
-${KMD_PATH}/listassetchains | while read list; do
-  if [[ "${ignore_list[@]}" =~ "${list}" ]]; then
-    continue
-  fi
-  reset_wallet $list
-done
+#if [ ! -z $1 ] && [ $1 != "KMD" ]
+#then
+	${KMD_PATH}/listassetchains | while read list; do
+		if [[ "${ignore_list[@]}" =~ "${list}" ]]; then
+			continue
+		fi
+		reset_wallet $list
+	done
+#else
+#	reset_wallet "KMD"
+#fi
 log_print "THE END!"
 #EOF

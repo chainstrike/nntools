@@ -26,9 +26,10 @@ processlist=(
 'komodod'
 'bitcoind'
 'chipsd'
-'gamecreditsd'
-'HUSH'
-'EMC2'
+'gamecredits'
+'hush'
+'einsteinium'
+'gincoin'
 'REVS'
 'SUPERNET'
 'DEX'
@@ -70,6 +71,7 @@ processlist=(
 'ZEX'
 'KSB'
 'OUR'
+'ILIEN'
 )
 
 count=0
@@ -127,7 +129,14 @@ do
 
     fi
 
-    if [ "$count" -gt "5" ]
+    if [ "$count" = "6" ]
+    then
+            RESULT="$(/home/$USER/gincoin-core/src/gincoin-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
+            RESULT2="$(/home/$USER/gincoin-core/src/gincoin-cli -rpcclienttimeout=15 getbalance)"
+
+    fi
+
+    if [ "$count" -gt "6" ]
     then
             cd ~/komodo/src
             RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep 0.00010000 | wc -l)"

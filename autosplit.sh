@@ -18,6 +18,7 @@ ignore=(
         HUSH
         CHIPS
         GAME
+	MGNX
 #        VRSC
         EMC2
 #        KMDICE
