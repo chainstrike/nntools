@@ -9,7 +9,7 @@ coins[CHIPS]=$HOME/chips3/src/chips-cli
 coins[GAME]=$HOME/GameCredits/src/gamecredits-cli
 coins[EMC2]=$HOME/einsteinium/src/einsteinium-cli
 coins[HUSH]=$HOME/hush/src/hush-cli
-coins[GIN]=$HOME/gincoin/src/gincoin-cli
+coins[GIN]=$HOME/gincoin-core/src/gincoin-cli
 # declare -A coins=( [BTC]=/usr/local/bin/bitcoin-cli [GAME]=$HOME/GameCredits/src/gamecredits-cli ) # example of one-line array init
 
 # all you need is to insert your pubkey here in lock script format: 21{YOUR_33_BYTES_HEX_PUBKEY}AC
