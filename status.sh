@@ -69,7 +69,6 @@ processlist=(
 'SEC'
 'CCL'
 'PIRATE'
-'MGNX'
 'PGT'
 'KMDICE'
 'DION'

@@ -46,7 +46,7 @@ komodo_daemon="$KMD_PATH/komodod"
 
 # Never do these (see listassetchains / assetchains.json)
 ignore_list=(
-	REVS
+	GIN
 	MGNX
         KMD
         BTC
