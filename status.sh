@@ -51,7 +51,6 @@ processlist=(
 'KV'
 'CEAL'
 'MESH'
-'MNZ'
 'AXO'
 'BTCH'
 'ETOMIC'

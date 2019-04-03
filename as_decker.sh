@@ -18,8 +18,8 @@ NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
 # if tx failed to broadcast (not in chain) it resigned by daemon and broadcast to network.
 # very simple solution until we fix internal iguana splitfund sign.
 
-utxo_min=50
-utxo_max=100
+utxo_min=77
+utxo_max=150
 
 # --------------------------------------------------------------------------
 function init_colors() {
@@ -107,7 +107,7 @@ function do_autosplit() {
 init_colors
 log_print "Starting autosplit ..."
 
-declare -a kmd_coins=(KMD REVS SUPERNET DEX PANGEA JUMBLR BET CRYPTO HODL MSHARK BOTS MGW COQUI WLC KV CEAL MESH MNZ AXO ETOMIC BTCH NINJA OOT BNTN CHAIN PRLPAY DSEC GLXT EQL VRSC ZILLA RFOX SEC CCL PIRATE PGT KMDICE DION ZEX KSB OUR ILN)
+declare -a kmd_coins=(KMD REVS SUPERNET DEX PANGEA JUMBLR BET CRYPTO HODL MSHARK BOTS MGW COQUI WLC KV CEAL MESH AXO ETOMIC BTCH NINJA OOT BNTN CHAIN PRLPAY DSEC GLXT EQL VRSC ZILLA RFOX SEC CCL PIRATE PGT KMDICE DION ZEX KSB OUR ILN)
 #declare -a kmd_coins=(BEER PIZZA DEX)
 for i in "${kmd_coins[@]}"
 do

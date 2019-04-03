@@ -4,7 +4,7 @@
 # (c) Decker, 2018-2019
 
 declare -A coins
-coins[BTC]=/usr/bin/bitcoin-cli
+#coins[BTC]=/usr/bin/bitcoin-cli
 coins[CHIPS]=$HOME/chips3/src/chips-cli
 coins[GAME]=$HOME/GameCredits/src/gamecredits-cli
 coins[EMC2]=$HOME/einsteinium/src/einsteinium-cli
