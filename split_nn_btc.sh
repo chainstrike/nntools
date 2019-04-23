@@ -21,7 +21,7 @@ CYAN="\033[36m"
 WHITE="\033[37m"    
 
 NN_ADDRESS=13swCVuXeZhWkmwEXod83Mv2YWKVqYeMVS
-NN_PUBKEY=023cb3e593fb85c5659688528bitcoine9a4f1c4c7f19206edc7e517d20f794ba686fd6d6
+NN_PUBKEY=023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6
 NN_HASH160=1f924ac57c8e44cfbf860fbe0a3ea072b5fb8d0f
 
 FROM_ADDRESS=13swCVuXeZhWkmwEXod83Mv2YWKVqYeMVS
@@ -31,11 +31,11 @@ FROM_HASH160=1f924ac57c8e44cfbf860fbe0a3ea072b5fb8d0f
 
 SPLIT_VALUE=0.0001
 SPLIT_VALUE_SATOSHI=$(jq -n "$SPLIT_VALUE*100000000")
-SPLIT_COUNT=50 # do not set split count > 252 (!), it's important
+SPLIT_COUNT=100 # do not set split count > 252 (!), it's important
 SPLIT_TOTAL=$(jq -n "$SPLIT_VALUE*$SPLIT_COUNT")
 SPLIT_TOTAL_SATOSHI=$(jq -n "$SPLIT_VALUE*$SPLIT_COUNT*100000000")
 
-TXFEE_SATOSHI_VBYTE=120 # take it from https://btc.com/stats/unconfirmed-tx
+TXFEE_SATOSHI_VBYTE=130 # take it from https://btc.com/stats/unconfirmed-tx
 
 curl -s https://blockchain.info/unspent?active=$FROM_ADDRESS > split_nn.utxos
 
@@ -120,9 +120,17 @@ curlport=8332
 #sign is turned off, you should sign tx manually
 #signed=$(curl -s --user $curluser:$curlpass --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "signrawtransaction", "params": ["'$rawtx'", [], ["'$FROM_PRIVKEY'"]]}' -H 'content-type: text/plain;' http://127.0.0.1:$curlport/ | jq -r .result.hex)
 
+raw=${RESET}$rawtx
+
 echo -e '\n'
-echo -e ${YELLOW}'Unsigned TX: '${RESET}$rawtx
+echo -e ${YELLOW}'Unsigned TX: '$raw
 echo -e '\n'
+
+tx=$(bitcoin-cli signrawtransaction $raw | jq -r .result.hex)
+
+echo $tx
+
+bitcoin-cli sendrawtransaction "$tx" true
 
 #echo -e ${YELLOW}'Signed TX: '${RESET}$signed
 #echo -e '\n'
