@@ -4,17 +4,17 @@
 # (c) Decker, 2018-2019
 
 declare -A coins
-coins[BTC]=/usr/bin/bitcoin-cli
-coins[CHIPS]=$HOME/chips3/src/chips-cli
-coins[GAME]=$HOME/GameCredits/src/gamecredits-cli
-coins[EMC2]=$HOME/einsteinium/src/einsteinium-cli
-coins[HUSH]=$HOME/hush/src/hush-cli
-coins[GIN]=$HOME/gincoin-core/src/gincoin-cli
+coins[BTC]=/usr/local/bin/bitcoin-cli
+#coins[CHIPS]=$HOME/chips3/src/chips-cli
+#coins[GAME]=$HOME/GameCredits/src/gamecredits-cli
+#coins[EMC2]=$HOME/einsteinium/src/einsteinium-cli
+#coins[HUSH]=$HOME/hush/src/hush-cli
+##coins[GIN]=$HOME/gincoin-core/src/gincoin-cli
 # declare -A coins=( [BTC]=/usr/local/bin/bitcoin-cli [GAME]=$HOME/GameCredits/src/gamecredits-cli ) # example of one-line array init
 
 # all you need is to insert your pubkey here in lock script format: 21{YOUR_33_BYTES_HEX_PUBKEY}AC
-NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
-
+#NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
+NN_PUBKEY=210370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153ac
 # script check the condition if utxo_count < utxo_min then append it to utxo_max,
 # small example: utxo_min = 100; utxo_max = 100; if you have 90 utxo (90 < utxo_min)
 # script will spilt additional 10 utxos to have utxo_max (100).
