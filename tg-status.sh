@@ -103,20 +103,20 @@ do
 
     if [ "$count" = "2" ]
     then
-            RESULT="$(chips-cli -rpcclienttimeout=15 listunspent | grep 0.00010000 | wc -l)"
-            RESULT2="$(chips-cli -rpcclienttimeout=15 getbalance)"
+            RESULT="$(/home/$USER/chips3/src/chips-cli -rpcclienttimeout=15 listunspent | grep 0.00010000 | wc -l)"
+            RESULT2="$(/home/$USER/chips3/src/chips-cli -rpcclienttimeout=15 getbalance)"
     fi
 
     if [ "$count" = "3" ]
     then
-            RESULT="$(gamecredits-cli -rpcclienttimeout=15 listunspent | grep 0.00100000 | wc -l)"
-            RESULT2="$(gamecredits-cli -rpcclienttimeout=15 getbalance)"
+            RESULT="$(/home/$USER/GameCredits/src/gamecredits-cli -rpcclienttimeout=15 listunspent | grep 0.00100000 | wc -l)"
+            RESULT2="$(/home/$USER/GameCredits/src/gamecredits-cli -rpcclienttimeout=15 getbalance)"
     fi
 
     if [ "$count" = "4" ]
     then
-            RESULT="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
-            RESULT2="$(/home/$USER/hush/src/hush-cli -rpcclienttimeout=15 getbalance)"
+            RESULT="$(/home/$USER/hush3/src/hush-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
+            RESULT2="$(/home/$USER/hush3/src/hush-cli -rpcclienttimeout=15 getbalance)"
 
     fi
 

@@ -136,9 +136,9 @@ do
     fi
     if [ "$count" = "7" ]
     then
-            RESULT="$(/home/$USER/gincoin/src/gincoin-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
-            RESULT1="$(/home/$USER/gincoin/src/gincoin-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
-            RESULT2="$(/home/$USER/gincoin/src/gincoin-cli -rpcclienttimeout=15 getbalance)"
+            RESULT="$(/home/$USER/gincoin-core/src/gincoin-cli -rpcclienttimeout=15 listunspent | grep .00010000 | wc -l)"
+            RESULT1="$(/home/$USER/gincoin-core/src/gincoin-cli -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
+            RESULT2="$(/home/$USER/gincoin-core/src/gincoin-cli -rpcclienttimeout=15 getbalance)"
 
     fi
     if [ "$count" -gt "7" ]
