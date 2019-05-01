@@ -75,6 +75,11 @@ processlist=(
 'KSB'
 'OUR'
 'ILN'
+'PIZZA'
+'BEER'
+'RICK'
+'MORTY'
+'KOIN'
 )
 
 count=0
