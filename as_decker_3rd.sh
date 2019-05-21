@@ -3,28 +3,11 @@
 # 3rd party Splitfund Script
 # (c) Decker, 2018-2019
 
-declare -A coins
-coins[BTC]=/usr/local/bin/bitcoin-cli
-coins[CHIPS]=$HOME/chips3/src/chips-cli
-coins[GAME]=$HOME/GameCredits/src/gamecredits-cli
-coins[EMC2]=$HOME/einsteinium/src/einsteinium-cli
-#coins[HUSH3]=$HOME/hush3/src/hush-cli
-coins[GIN]=$HOME/gincoin-core/src/gincoin-cli
-# declare -A coins=( [BTC]=/usr/local/bin/bitcoin-cli [GAME]=$HOME/GameCredits/src/gamecredits-cli ) # example of one-line array init
 
-# all you need is to insert your pubkey here in lock script format: 21{YOUR_33_BYTES_HEX_PUBKEY}AC
-#NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
-NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
-# script check the condition if utxo_count < utxo_min then append it to utxo_max,
-# small example: utxo_min = 100; utxo_max = 100; if you have 90 utxo (90 < utxo_min)
-# script will spilt additional 10 utxos to have utxo_max (100).
+### LOAD CONFIG
+source $HOME/node.conf
 
-# every splitfunds tx is signed and trying to broadcast by iguana, then it checks by daemon,
-# if tx failed to broadcast (not in chain) it resigned by daemon and broadcast to network.
-# very simple solution until we fix internal iguana splitfund sign.
 
-utxo_min=50
-utxo_max=100
 
 # --------------------------------------------------------------------------
 function init_colors() {
@@ -66,9 +49,9 @@ function do_autosplit() {
         # check if result is number (https://stackoverflow.com/questions/806906/how-do-i-test-if-a-variable-is-a-number-in-bash)
 
         if [ -n "$utxo" ] && [ "$utxo" -eq "$utxo" ] 2>/dev/null; then
-        if [ $utxo -lt $utxo_min ]; then
-                need=$(($utxo_max-$utxo))
-                log_print "${BRIGHT}\x5b${RESET}${YELLOW}${coin}${RESET}${BRIGHT}\x5d${RESET} have.${utxo} --> add.${need} --> total.${utxo_max}"
+        if [ $utxo -lt $utxo_min_3rd ]; then
+                need=$(($utxo_max_3rd-$utxo))
+                log_print "${BRIGHT}\x5b${RESET}${YELLOW}${coin}${RESET}${BRIGHT}\x5d${RESET} have.${utxo} --> add.${need} --> total.${utxo_max_3rd}"
                 # /home/decker/SuperNET/iguana/acsplit $i $need
                 log_print "${DARKGREY}curl -s --url \"http://127.0.0.1:7776\" --data '{\"coin\":\"${coin}\",\"agent\":\"iguana\",\"method\":\"splitfunds\",\"satoshis\":\"${satoshis}\",\"sendflag\":1,\"duplicates\":\"${need}\"}'${RESET}"
                 splitres=$(curl -s --url "http://127.0.0.1:7776" --data "{\"coin\":\""${coin}"\",\"agent\":\"iguana\",\"method\":\"splitfunds\",\"satoshis\":\"${satoshis}\",\"sendflag\":1,\"duplicates\":"${need}"}")

@@ -3,24 +3,11 @@
 # Assetchains Splitfund Script
 # (c) Decker, 2018-2019
 
-chips_cli=$HOME/chips3/src/chips-cli
-bitcoin_cli=/usr/bin/bitcoin-cli
-gamecredits_cli=$HOME/GameCredits/src/gamecredits-cli
-komodo_cli=$HOME/komodo/src/komodo-cli
 
-# all you need is to insert your pubkey here in lock script format: 21{YOUR_33_BYTES_HEX_PUBKEY}AC
-#NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
-NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
-# script check the condition if utxo_count < utxo_min then append it to utxo_max,
-# small example: utxo_min = 100; utxo_max = 100; if you have 90 utxo (90 < utxo_min)
-# script will spilt additional 10 utxos to have utxo_max (100).
+### LOAD CONFIG
+source $HOME/node.conf
 
-# every splitfunds tx is signed and trying to broadcast by iguana, then it checks by daemon,
-# if tx failed to broadcast (not in chain) it resigned by daemon and broadcast to network.
-# very simple solution until we fix internal iguana splitfund sign.
 
-utxo_min=77
-utxo_max=150
 
 # --------------------------------------------------------------------------
 function init_colors() {

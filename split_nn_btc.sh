@@ -20,31 +20,11 @@ MAGENTA="\033[35m"
 CYAN="\033[36m"     
 WHITE="\033[37m"    
 
-#<<<<<<< HEAD
-NN_ADDRESS=13swCVuXeZhWkmwEXod83Mv2YWKVqYeMVS
-NN_PUBKEY=023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6
-NN_HASH160=1f924ac57c8e44cfbf860fbe0a3ea072b5fb8d0f
-#=======
-#NN_ADDRESS=1PaDKKamr7MrnheZZc7twW81TwU9MQK4JV
-#NN_PUBKEY=0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153
-#NN_HASH160=f79ac6561f09ccc445ba0820c8167c1f1d004d93
-#>>>>>>> f491a80833917603ad1a78834e98daad9566a978
 
-FROM_ADDRESS=13swCVuXeZhWkmwEXod83Mv2YWKVqYeMVS
-FROM_HASH160=1f924ac57c8e44cfbf860fbe0a3ea072b5fb8d0f
-#FROM_ADDRESS=1PaDKKamr7MrnheZZc7twW81TwU9MQK4JV
-#FROM_HASH160=f79ac6561f09ccc445ba0820c8167c1f1d004d93
+# LOAD CONFIG
+source $HOME/node.conf
 
-# FROM_PUBKEY=000000000000000000000000000000000000000000000000000000000000000000
-# FROM_PRIVKEY=Up1YVLk7uuErCHVQyFCtfinZngmdwfyfc47WCQ8oJxgowEbuo6t4
 
-SPLIT_VALUE=0.0001
-SPLIT_VALUE_SATOSHI=$(jq -n "$SPLIT_VALUE*100000000")
-SPLIT_COUNT=100 # do not set split count > 252 (!), it's important
-SPLIT_TOTAL=$(jq -n "$SPLIT_VALUE*$SPLIT_COUNT")
-SPLIT_TOTAL_SATOSHI=$(jq -n "$SPLIT_VALUE*$SPLIT_COUNT*100000000")
-
-TXFEE_SATOSHI_VBYTE=130 # take it from https://btc.com/stats/unconfirmed-tx
 
 curl -s https://blockchain.info/unspent?active=$FROM_ADDRESS > split_nn.utxos
 
@@ -121,10 +101,10 @@ fi
 
 # signrawtransaction hex "[]" "[\"privkey\"]"
 
-curdir=$(pwd)
-curluser=user
-curlpass=pass
-curlport=8332
+#curdir=$(pwd)
+#curluser=user
+#curlpass=pass
+#curlport=8332
 
 #sign is turned off, you should sign tx manually
 #signed=$(curl -s --user $curluser:$curlpass --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "signrawtransaction", "params": ["'$rawtx'", [], ["'$FROM_PRIVKEY'"]]}' -H 'content-type: text/plain;' http://127.0.0.1:$curlport/ | jq -r .result.hex)
@@ -132,14 +112,14 @@ curlport=8332
 raw=${RESET}$rawtx
 
 echo -e '\n'
-echo -e ${YELLOW}'Unsigned TX: '$raw
+echo -e ${YELLOW}'Unsigned TX: \n'$raw
 echo -e '\n'
 
-tx=$(bitcoin-cli signrawtransaction $raw | jq -r .result.hex)
+#tx=$(bitcoin-cli signrawtransaction $raw | jq -r .result.hex)
 
-echo $tx
+#echo $tx
 
-bitcoin-cli sendrawtransaction "$tx" true
+#bitcoin-cli sendrawtransaction "$tx" true
 
 #echo -e ${YELLOW}'Signed TX: '${RESET}$signed
 #echo -e '\n'
