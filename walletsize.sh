@@ -25,7 +25,7 @@ function show_walletsize () {
       SIZE=0
     fi
   elif [ "$1" = "BTC" ]; then
-    SIZE=$(stat ~/.bitcoin/wallets/wallet.dat | grep -Po "\d+" | head -1)
+    SIZE=$(stat ~/.bitcoin/wallet.dat | grep -Po "\d+" | head -1)
   elif [ "$1" = "KMD" ]; then
     SIZE=$(stat ~/.komodo/wallet.dat | grep -Po "\d+" | head -1)
   fi

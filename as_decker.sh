@@ -99,7 +99,7 @@ function do_autosplit() {
             fi
         else
             log_print "${BRIGHT}\x5b${RESET}${YELLOW}${coin}${RESET}${BRIGHT}\x5d${RESET} have.${utxo} --> don't need split ..."
-        fi 
+        fi
     else
             log_print "${BRIGHT}\x5b${RESET}${YELLOW}${coin}${RESET}${BRIGHT}\x5d${RESET} ${RED}Error: utxo count is not a number, may be daemon dead ... ${RESET}"
     fi
@@ -108,7 +108,7 @@ function do_autosplit() {
 init_colors
 log_print "Starting autosplit ..."
 
-declare -a kmd_coins=(KMD REVS SUPERNET DEX PANGEA JUMBLR BET CRYPTO HODL MSHARK BOTS MGW COQUI WLC KV CEAL MESH AXO ETOMIC BTCH NINJA OOT BNTN CHAIN PRLPAY DSEC GLXT EQL VRSC ZILLA RFOX SEC CCL PIRATE PGT KMDICE DION ZEX KSB OUR ILN PIZZA BEER RICK MORTY KOIN)
+declare -a kmd_coins=(KMD REVS SUPERNET DEX PANGEA JUMBLR BET CRYPTO HODL MSHARK BOTS MGW COQUI WLC KV CEAL MESH AXO ETOMIC BTCH NINJA OOT BNTN CHAIN PRLPAY DSEC GLXT EQL VRSC ZILLA RFOX SEC CCL PIRATE PGT KMDICE DION ZEX KSB OUR ILN RICK MORTY KOIN HUSH3 ZEXO K64)
 #declare -a kmd_coins=(BEER PIZZA DEX)
 for i in "${kmd_coins[@]}"
 do

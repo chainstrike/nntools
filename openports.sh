@@ -59,6 +59,12 @@ sudo ufw allow 23894 # DION
 sudo ufw allow 26476 # ZEX
 sudo ufw allow 21065 # KSB
 sudo ufw allow 45671 # OUR
+sudo ufw allow 12985 # ILN
+sudo ufw allow 28222 # RICK
+sudo ufw allow 63811 # MORTY
+sudo ufw allow 10701 # KOIN
+sudo ufw allow 33969 # ZEXO
+sudo ufw allow 12244 # K64
 
 sudo ufw enable
 sudo ufw status verbose

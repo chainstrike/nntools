@@ -8,7 +8,7 @@ coins[BTC]=/usr/local/bin/bitcoin-cli
 coins[CHIPS]=$HOME/chips3/src/chips-cli
 coins[GAME]=$HOME/GameCredits/src/gamecredits-cli
 coins[EMC2]=$HOME/einsteinium/src/einsteinium-cli
-coins[HUSH]=$HOME/hush3/src/hush-cli
+#coins[HUSH3]=$HOME/hush3/src/hush-cli
 coins[GIN]=$HOME/gincoin-core/src/gincoin-cli
 # declare -A coins=( [BTC]=/usr/local/bin/bitcoin-cli [GAME]=$HOME/GameCredits/src/gamecredits-cli ) # example of one-line array init
 
@@ -59,8 +59,8 @@ function do_autosplit() {
         else
             satoshis=10000; amount=0.0001
         fi
-        
-	    # .generated==false and # for most coins generated field doesn't exits in listunspent, so, we shouldn't use it
+
+	# .generated==false and # for most coins generated field doesn't exits in listunspent, so, we shouldn't use it
         utxo=$($komodo_cli $asset listunspent | jq '[.[] | select (.amount=='${amount}' and .spendable==true and (.scriptPubKey == "'$NN_PUBKEY'"))] | length')
 
         # check if result is number (https://stackoverflow.com/questions/806906/how-do-i-test-if-a-variable-is-a-number-in-bash)

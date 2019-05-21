@@ -46,11 +46,19 @@ komodo_daemon="$KMD_PATH/komodod"
 
 # Never do these (see listassetchains / assetchains.json)
 ignore_list=(
+	REVS
+	SUPERNET
+	ILN
+	RICK
+	MORTY
+	VOTE2019
+	KOIN
 	GIN
 	MGNX
         KMD
         BTC
         HUSH
+	HUSH3
         CHIPS
         GAME
         VRSC
