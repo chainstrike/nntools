@@ -43,6 +43,7 @@ function show_walletsize () {
 
 ignore_list=(
   VOTE2018
+  VOTE2019
   PIZZA
   BEER
 )
