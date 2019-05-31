@@ -66,7 +66,6 @@ processlist=(
 'PGT'
 'KMDICE'
 'DION'
-'ZEX'
 'KSB'
 'OUR'
 'ILN'
