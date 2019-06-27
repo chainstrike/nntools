@@ -94,15 +94,15 @@ do
 
     if [ "$count" = "0" ]
     then
-            cd ~/komodo/src
-            RESULT="$(./komodo-cli -rpcclienttimeout=15 listunspent | grep 0.00010000 | wc -l)"
-            RESULT2="$(./komodo-cli -rpcclienttimeout=15 getbalance)"
+#            cd ~/komodo/src
+            RESULT="$(/home/$USER/komodo/src/komodo-cli -rpcclienttimeout=15 listunspent | grep 0.00010000 | wc -l)"
+            RESULT2="$(/home/$USER/komodo/src/komodo-cli -rpcclienttimeout=15 getbalance)"
     fi
 
     if [ "$count" = "1" ]
     then
-            RESULT="$(bitcoin-cli -rpcclienttimeout=15 listunspent | grep 0.00010000 | wc -l)"
-            RESULT2="$(bitcoin-cli -rpcclienttimeout=15 getbalance)"
+            RESULT="$(/home/$USER/bitcoin/src/bitcoin-cli -rpcclienttimeout=15 listunspent | grep 0.00010000 | wc -l)"
+            RESULT2="$(/home/$USER/bitcoin/src/bitcoin-cli -rpcclienttimeout=15 getbalance)"
     fi
 
     if [ "$count" = "2" ]
@@ -140,9 +140,9 @@ do
 
     if [ "$count" -gt "6" ]
     then
-            cd ~/komodo/src
-            RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep 0.00010000 | wc -l)"
-            RESULT2="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} getbalance)"
+#            cd ~/komodo/src
+            RESULT="$(/home/$USER/komodo/src/komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep 0.00010000 | wc -l)"
+            RESULT2="$(/home/$USER/komodo/src/komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} getbalance)"
     fi
 
   fi

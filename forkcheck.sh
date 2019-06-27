@@ -9,7 +9,8 @@ variance=3
 source /home/$USER/nntools/coinlist.nr
 forked=false
 
-remotecheck=$(curl -Ssf https://komodostats.com/api/notary/summary.json)
+#remotecheck=$(curl -Ssf https://komodostats.com/api/notary/summary.json)
+remotecheck=$(curl -Ssf https://dexstats.info/api/explorerstatus.php)
 remotecheck2=$(curl -Ssf https://dexstats.info/api/explorerstatus.php)
 
 format="%-8s %8s %8s %8s %8s\n"
@@ -23,7 +24,9 @@ for coins in "${coinlist[@]}"; do
 
         blocks=$(komodo-cli -ac_name=${coin[0]} getinfo | jq .blocks)
         longest=$(komodo-cli -ac_name=${coin[0]} getinfo | jq .longestchain)
-        remoteblocks=$(echo $remotecheck | jq --arg acname ${coin[0]} '.[] | select(.ac_name==$acname) | .blocks')
+#        remoteblocks=$(echo $remotecheck | jq --arg acname ${coin[0]} '.[] | select(.ac_name==$acname) | .blocks')
+        remoteblocks=$(echo $remotecheck2 | jq --arg acname ${coin[0]} '.status[] | select(.chain==$acname) | .height | tonumber')
+
         remoteblocks2=$(echo $remotecheck2 | jq --arg acname ${coin[0]} '.status[] | select(.chain==$acname) | .height | tonumber')
         diff1=$((blocks-remoteblocks))
         diff2=$((blocks-remoteblocks2))

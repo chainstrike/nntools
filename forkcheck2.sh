@@ -1,0 +1,162 @@
+#!/bin/bash
+
+#You can modify this list of ACs to exclude or comment out the line to show all
+ignoreacs=('VOTE2018' 'VOTE2019' 'BEER' 'PIZZA')
+
+#how far ahead or behind before being marked as a fork
+variance=15
+
+source /home/$USER/nntools/coinlist.nr
+#source coinlist
+forked=false
+
+remotecheck=$(curl -Ssf https://komodostats.com/api/notary/summary.json)
+remotecheck2=$(curl -Ssf https://dexstats.info/api/explorerstatus.php)
+remotecheck3=$(curl -Ssf https://notarystats.com/json/latest.json)
+
+format="%-8s %8s %8s %15s %15s %15s\n"
+redformat="\033[0;31m$format\033[0m"
+printf "$format" "-ASSET-" "-BLOCKS-" "-LONG-" "-komodostats-" "-dexstats-" "-notarystats-"
+
+parseKomodostats()
+{
+    local coin=$1
+    local remotedata=$2
+    remoteblocks=$(jq --arg coinname $coin '.[] | select(.ac_name==$coinname) | .blocks' <<< $remotedata)
+}
+
+parseDexstats()
+{
+    local coin=$1
+    local remotedata=$2
+    remoteblocks2=$(jq --arg coinname $coin '.status[] | select(.chain==$coinname) | .height | tonumber' <<< $remotedata)
+    remotehash2=$(jq -r --arg coinname $coin '.status[] | select(.chain==$coinname) | .hash' <<< $remotedata)
+}
+
+parseNotarystats()
+{
+    local coin=$1
+    local remotedata=$2
+    remoteblocks3=$(jq --arg coinname $coin '.coin[] | select(.name==$coinname) | .block' <<< $remotedata)
+    remotehash3=$(jq -r --arg coinname $coin '.coin[] | select(.name==$coinname) | .bestblockhash' <<< $remotedata)
+}
+
+outputRow()
+{
+    local coinname=$1
+    local localblocks=$2
+    local locallongest=$3
+    local localhash=$4
+
+    if (( localblocks > 0 )); then
+        thisformat=$format
+
+        if (( remoteblocks > 0 )); then
+            diff1=$((localblocks-remoteblocks))
+        else
+            diff1=0
+        fi
+        if (( remoteblocks2 > 0 )); then
+            diff2=$((localblocks-remoteblocks2))
+        else
+            diff2=0
+        fi
+        if (( remoteblocks3 > 0 )); then
+            diff3=$((localblocks-remoteblocks3))
+        else
+            diff3=0
+        fi
+
+        if ((localblocks < locallongest)); then
+            forked=true
+            thisformat=$redformat
+        fi
+        if (( diff1 < variance * -1 )) || (( diff1 > variance )); then
+            forked=true
+            thisformat=$redformat
+        fi
+        if (( diff2 < variance * -1 )) || (( diff2 > variance )); then
+            forked=true
+            thisformat=$redformat
+        fi
+        if (( diff3 < variance * -1 )) || (( diff3 > variance )); then
+            forked=true
+            thisformat=$redformat
+        fi
+
+        hasherror2=""
+        if [[ -z $remotehash2 ]] && [[ "$hashatheight2" != "$remotehash2" ]]; then
+            forked=true
+            hasherror2="!! "
+            echo "Dexstats Hash Mismatch Local: $hashatheight2 Remote: $remotehash2"
+        fi
+        hasherror3=""
+        if [[ -z $remotehash3 ]] && [[ "$hashatheight3" != "$remotehash3" ]]; then
+            forked=true
+            hasherror3="!! "
+            echo "Notarystats Hash Mismatch Local: $hashatheight3 Remote: $remotehash3"
+        fi
+
+        printf "$thisformat" "$coinname" "$localblocks" "$locallongest" "${remoteblocks}[$diff1]" "${hasherror2}$remoteblocks2[$diff2]" "${hasherror3}$remoteblocks3[$diff3]"
+    else
+        printf "$format" "$coinname" "$localblocks" "$locallongest" "$remoteblocks" "$remoteblocks2" "$remoteblocks3"
+    fi
+}
+
+#KMD
+blocks=$(komodo-cli getinfo | jq .blocks)
+longest=$(komodo-cli getinfo | jq .longestchain)
+blockhash=$(komodo-cli getbestblockhash)
+parseKomodostats "KMD" "$remotecheck"
+parseDexstats "KMD" "$remotecheck2"
+parseNotarystats "KMD" "$remotecheck3"
+hashatheight2=$(komodo-cli getblockhash $remoteblocks2)
+hashatheight3=$(komodo-cli getblockhash $remoteblocks3)
+outputRow "KMD" $blocks $longest $blockhash
+
+#CHIPS
+blocks=$($HOME/chips3/src/chips-cli getinfo | jq .blocks)
+longest=$($HOME/chips3/src/chips-cli getinfo | jq .headers)
+blockhash=$($HOME/chips3/src/chips-cli getbestblockhash)
+parseKomodostats "CHIPS" "$remotecheck"
+remoteblocks2=""
+remotehash2=
+hashatheight2=
+parseNotarystats "CHIPS" "$remotecheck3"
+hashatheight3=$($HOME/chips3/src/chips-cli getblockhash $remoteblocks3)
+outputRow "CHIPS" $blocks $longest $blockhash
+
+#GAME
+blocks=$($HOME/GameCredits/src/gamecredits-cli getinfo | jq .blocks)
+longest=$blocks
+blockhash=$($HOME/GameCredits/src/gamecredits-cli getbestblockhash)
+parseKomodostats "GAME" "$remotecheck"
+remoteblocks2=""
+remotehash2=
+hashatheight2=
+parseNotarystats "GAME" "$remotecheck3"
+hashatheight3=$($HOME/GameCredits/src/gamecredits-cli getblockhash $remoteblocks3)
+outputRow "GAME" $blocks $longest $blockhash
+
+#Loop through coinlist coins
+for coins in "${coinlist[@]}"; do
+    coin=($coins)
+
+    if [[ ! ${ignoreacs[*]} =~ ${coin[0]} ]]; then
+        blocks=$(komodo-cli -ac_name=${coin[0]} getinfo | jq .blocks)
+        longest=$(komodo-cli -ac_name=${coin[0]} getinfo | jq .longestchain)
+        blockhash=$(komodo-cli -ac_name=${coin[0]} getbestblockhash)
+        parseKomodostats "${coin[0]}" "$remotecheck"
+        parseDexstats "${coin[0]}" "$remotecheck2"
+        parseNotarystats "${coin[0]}" "$remotecheck3"
+        hashatheight2=$(komodo-cli -ac_name=${coin[0]} getblockhash $remoteblocks2)
+        hashatheight3=$(komodo-cli -ac_name=${coin[0]} getblockhash $remoteblocks3)
+        outputRow "${coin[0]}" $blocks $longest $blockhash
+    fi
+done
+
+if [ "$forked" = false ]; then
+    printf "\033[0;32mAll coins are fine\033[0m\n"
+else
+    printf "\033[0;31mPossible fork!\033[0m\n"
+fi
