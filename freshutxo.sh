@@ -1,6 +1,8 @@
 #/bin/bash
 source $HOME/node.conf
 cd ~/komodo/src
+echo $NODEADDR
+sleep 3
 ./komodo-cli sendtoaddress $NODEADDR 0.11
 sleep 3
 ./komodo-cli sendtoaddress $NODEADDR 0.51
