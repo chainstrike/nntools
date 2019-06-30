@@ -46,7 +46,6 @@ processlist=(
 'MSHARK'
 'BOTS'
 'MGW'
-'COQUI'
 'WLC'
 'KV'
 'CEAL'
