@@ -11,11 +11,11 @@ git pull
 printf "\n${GR}>>>>>>> CHECKING IGUANA${NC}\n"
 cd /home/$USER/SuperNET/iguana
 git stash
-git checkout dev
+git checkout beta_season3
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING HUSH${NC}\n"
-cd /home/$USER/hush
+cd /home/$USER/hush3
 git stash
 git checkout dev
 git pull
