@@ -4,7 +4,12 @@
 txscanamount=50
 
 #Only count KMD->BTC after this timestamp (block 814000)
-timefilter=1525032458
+timefilter=1563195060
+
+# Season 2 start
+#1525032458
+# Season 3 start
+#1563195060
 
 btcntrzaddr=1P3rU1Nk1pmc2BiWC8dEy9bZa1ZbMp5jfg
 
