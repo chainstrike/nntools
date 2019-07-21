@@ -8,12 +8,13 @@ sudo ufw allow 7770  # KMD port
 sudo ufw allow 8333  # BTC port
 sudo ufw allow 57777 # CHIPS port
 
-sudo ufw allow 7772  # Iguana port
+sudo ufw allow 7772  # KMD THIRD PARTY
 sudo ufw allow 7773  # Iguana port
 sudo ufw allow 7774  # Iguana port
 sudo ufw allow 7775  # Iguana port
 
-sudo ufw allow 17775 # Iguana (2018) port
+sudo ufw allow 17775 # Iguana (2019)
+sudo ufw allow 17776 # Iguana (2019) THIRD PARTY
 
 sudo ufw allow 8888  # HUSH
 sudo ufw allow 10195 # REVS asset chain port
