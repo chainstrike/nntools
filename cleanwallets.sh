@@ -3,16 +3,16 @@
 # @author webworker01
 #scriptpath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-source coinlist
+source $HOME/nntools/coinlist
 source $HOME/node.conf
 
 #echo $komodo_cli
 
 dt=$(date '+%Y-%m-%d %H:%M:%S');
 
-cleanerremoved=$($komodo_cli cleanwallettransactions | jq -r .removed_transactions)
+$komodo_cli cleanwallettransactions | jq -r .removed_transactions
 #if ($cleanerremoved > 0); then
-    echo "$dt [cleanwallettransactions] KMD - Removed $cleanerremoved transactions" >> $nntoolslogfile
+#    echo "$dt [cleanwallettransactions] KMD - Removed $cleanerremoved transactions" >> $nntoolslogfile
 #fi
 
 if (( thirdpartycoins < 1 )); then
@@ -20,9 +20,9 @@ if (( thirdpartycoins < 1 )); then
         coin=($coins)
         if [[ ! ${ignoreacs[*]} =~ ${coin[0]} ]]; then
             echo ${coin[0]}
-            cleanerremoved=$($komodo_cli -ac_name=${coin[0]} cleanwallettransactions | jq -r .removed_transactions)
+            $komodo_cli -ac_name=${coin[0]} cleanwallettransactions | jq -r .removed_transactions
 #            if ($cleanerremoved > "0"); then
-                echo "$dt [cleanwallettransactions] ${coin[0]} - Removed $cleanerremoved transactions" >> $nntoolslogfile
+#                echo "$dt [cleanwallettransactions] ${coin[0]} - Removed $cleanerremoved transactions" >> $nntoolslogfile
 #            fi
         fi
     done

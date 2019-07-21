@@ -8,7 +8,7 @@ sudo ufw allow 7770  # KMD port
 sudo ufw allow 8333  # BTC port
 sudo ufw allow 57777 # CHIPS port
 
-sudo ufw allow 7772  # KMD THIRD PARTY
+#sudo ufw allow 7772  # KMD THIRD PARTY
 sudo ufw allow 7773  # Iguana port
 sudo ufw allow 7774  # Iguana port
 sudo ufw allow 7775  # Iguana port
