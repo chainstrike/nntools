@@ -16,7 +16,7 @@ sudo ufw allow 7775  # Iguana port
 sudo ufw allow 17775 # Iguana (2019)
 sudo ufw allow 17776 # Iguana (2019) THIRD PARTY
 
-sudo ufw allow 8888  # HUSH
+sudo ufw allow 18030 # HUSH3
 sudo ufw allow 10195 # REVS asset chain port
 sudo ufw allow 11340 # SUPERNET asset chain port
 sudo ufw allow 11889 # DEX asset chain port
@@ -33,7 +33,7 @@ sudo ufw allow 8298  # KV asset chain port
 sudo ufw allow 11115 # CEAL asset chain port
 sudo ufw allow 9454  # MESH asset chain port
 sudo ufw allow 14336 # MNZ asset chain port
-sudo ufw allow 14275 # COQUI
+sudo ufw allow 19711 # COQUICASH
 sudo ufw allow 8845  # MSHARK
 sudo ufw allow 12926 # AXO
 sudo ufw allow 8799  # BTCH
@@ -57,7 +57,6 @@ sudo ufw allow 20730 # MGNX
 sudo ufw allow 46704 # PGT
 sudo ufw allow 30176 # KMDICE
 sudo ufw allow 23894 # DION
-sudo ufw allow 26476 # ZEX
 sudo ufw allow 21065 # KSB
 sudo ufw allow 45671 # OUR
 sudo ufw allow 12985 # ILN
