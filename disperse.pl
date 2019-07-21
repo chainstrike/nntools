@@ -6,13 +6,12 @@ my $balance = qx{$cli getbalance};
 print "# Current Balance=$balance\n";
 my %addresses = (
 	# address => percent
-	"RGZBQh4AqziCZ6rS8ps1kLqD7ribbCpv9a" => .40, # jeezy
-	"RBSEv7nJ1wciriVyLFWotQ8tBvS2rKwYtz" => .40, # duke
-	"RVwS8ghZtR89QxLXPGPJtqZEQ6KmfP7WEZ" => .10, # airdrop
-	"RF79i22W3YXMGsjzBLXNxU5KvWe31dG5pQ" => .10, # projects
+	"RQZXbeVihmTkEeZ6fBXtSpg3BywjmVosYS" => .45, # jeezy
+	"RGjwWtkCKvHCQZCJhJ66XwjALSRdpWjzYi" => .45, # duke
+	"RF79i22W3YXMGsjzBLXNxU5KvWe31dG5pQ" => .10  # projects
 );
 
-my $self = "RXrQPqU4SwARri1m2n7232TDECvjzXCJh4";
+my $self = "RM9c7nGctj8WsJ1bKXW4JZNGpqC8MPfBVw";
 
 # leave 11 and disperse rest
 my $reserve = 11;
