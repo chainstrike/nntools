@@ -68,6 +68,7 @@ processlist=(
 'KOIN'
 'ZEXO'
 'K64'
+'THC'
 )
 
 count=0

@@ -65,6 +65,7 @@ sudo ufw allow 63811 # MORTY
 sudo ufw allow 10701 # KOIN
 sudo ufw allow 33969 # ZEXO
 sudo ufw allow 12244 # K64
+sudo ufw allow 36789 # THC
 
 sudo ufw enable
 sudo ufw status verbose
