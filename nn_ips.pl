@@ -7,7 +7,7 @@ my $traceroute = "traceroute -n -m10";
 my $ips = {};
 while (<>) {
 	my $ip;
-	if ( m!NN_CONNECT to \(tcp://(.*):7775\)! ) {
+	if ( m!NN_CONNECT to \(tcp://(.*):17775\)! ) {
 		$ip = $1;
 		my $cmd = "$traceroute $ip";
 		print "Running $cmd ...";
