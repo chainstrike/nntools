@@ -5,9 +5,12 @@ use warnings;
 #my $traceroute = "traceroute -I -n";
 my $traceroute = "traceroute -n -m10";
 my $ips = {};
+my $ip  = "";
+# default port or give it as a CLI argument like
+# cat iguana.log | nn_ips.pl 7774
+my $port = 7776 || shift;
 while (<>) {
-	my $ip;
-	if ( m!NN_CONNECT to \(tcp://(.*):17775\)! ) {
+	if ( m!NN_CONNECT to \(tcp://(.*):! ) {
 		$ip = $1;
 		my $cmd = "$traceroute $ip";
 		print "Running $cmd ...";
@@ -19,10 +22,11 @@ while (<>) {
 		$ips->{$ip} = $hops;
 	}
 }
-#my @sorted = map  { $_->[0] } 
-#			 sort { $a->[1] cmp $b->[1] }
-#			 map  { [$_, $ips->{$_} ]   } keys %$ips;
+
 my @sorted = sort { $ips->{$a} <=> $ips->{$b} } keys %$ips;
 
 print "Closest NN IPs:\n";
-print join("\n", "curl --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"iguana\\\",\\\"method\\\":\\\"addnotary\\\",\\\"ipaddr\\\":\\\"". @sorted) . "\\\"}\"\n";
+
+for my $ip (@sorted) {
+	print "curl --url \"http://127.0.0.1:$port\" --data \"{\\\"agent\\\":\\\"iguana\\\",\\\"method\\\":\\\"addnotary\\\",\\\"ipaddr\\\":\\\"$ip\\\"}\"\n";
+}
