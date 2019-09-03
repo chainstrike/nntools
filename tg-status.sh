@@ -49,7 +49,6 @@ processlist=(
 'CHAIN'
 'PRLPAY'
 'DSEC'
-'GLXT'
 'EQL'
 'ZILLA'
 'RFOX'
