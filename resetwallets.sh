@@ -37,7 +37,7 @@
 
 # you'll need only to set NN_ADDRESS, other needed info such as pubkey and privkey
 # script will get automatically from daemon
-NN_ADDRESS=RCA8H1npFPW5pnJRzycF8tFEJmn6XZhD4j
+NN_ADDRESS=RVxow6SGPCjL2TxfTcztxMWeJWgS5rZTE6
 
 # Set paths
 KMD_PATH="$HOME/komodo/src"
@@ -46,24 +46,15 @@ komodo_daemon="$KMD_PATH/komodod"
 
 # Never do these (see listassetchains / assetchains.json)
 ignore_list=(
-	REVS
-	SUPERNET
-	ILN
-	RICK
-	MORTY
-	VOTE2019
-	KOIN
-	GIN
-	MGNX
+        VOTE2019
+        GIN
         KMD
         BTC
         HUSH
-	HUSH3
         CHIPS
         GAME
         VRSC
         EMC2
-        KMDICE
         VOTE2018
         PIZZA
         BEER
@@ -137,7 +128,6 @@ else
     coin="KMD"
     asset=""
 fi
-
 i=0
 $komodo_cli $asset stop
 
@@ -183,8 +173,8 @@ function get_balance()
 
 function do_send()
 {
-	RESULT=$($komodo_cli $asset sendtoaddress $NN_ADDRESS $BALANCE "" "" true 2>&1)
-	ERRORLEVEL=$?
+        RESULT=$($komodo_cli $asset sendtoaddress $NN_ADDRESS $BALANCE "" "" true 2>&1)
+        ERRORLEVEL=$?
 }
 
 function send_balance()
@@ -199,36 +189,36 @@ function send_balance()
         asset=""
     fi
 
-	# Author: jeezy (TAB>space btw)
-	# Steps: Try to send, if tx too large split into ten 10% chunks and send all, send whole balance to self again
-	# Try send again
-	get_balance
-	log_print "$komodo_cli $asset sendtoaddress $NN_ADDRESS $BALANCE _ _ true"
-	do_send
-	while [ "$ERRORLEVEL" -ne "0" ]
-	do
-		if [[ $RESULT =~ "Transaction too large" ]]; then
-			BALANCE=$(printf %f $(bc -l <<< "scale=8;$BALANCE*0.1"))
-        		log_print "TX to large. Now trying to send ten 10% chunks of $BALANCE"
-			log_print "$komodo_cli $asset sendtoaddress $NN_ADDRESS $BALANCE _ _ true"
-			counter=1
-			while [ $counter -le 10 ]
-			do
-				do_send
-				log_print "txid: $RESULT"
-				((counter++))
-			done
-			log_print "Sending whole balance again..."
-			sleep 3
-			get_balance
-		        log_print "$komodo_cli $asset sendtoaddress $NN_ADDRESS $BALANCE _ _ true"
-			do_send
-		else
-	        	log_print "ERROR: $RESULT"
-	    		exit
-		fi
-	done
-	log_print "txid: $RESULT"
+        # Author: jeezy (TAB>space btw)
+        # Steps: Try to send, if tx too large split into ten 10% chunks and send all, send whole balance to self again
+        # Try send again
+        get_balance
+        log_print "$komodo_cli $asset sendtoaddress $NN_ADDRESS $BALANCE _ _ true"
+        do_send
+        while [ "$ERRORLEVEL" -ne "0" ]
+        do
+                if [[ $RESULT =~ "Transaction too large" ]]; then
+                        BALANCE=$(printf %f $(bc -l <<< "scale=8;$BALANCE*0.1"))
+                        log_print "TX to large. Now trying to send ten 10% chunks of $BALANCE"
+                        log_print "$komodo_cli $asset sendtoaddress $NN_ADDRESS $BALANCE _ _ true"
+                        counter=1
+                        while [ $counter -le 10 ]
+                        do
+                                do_send
+                                log_print "txid: $RESULT"
+                                ((counter++))
+                        done
+                        log_print "Sending whole balance again..."
+                        sleep 3
+                        get_balance
+                        log_print "$komodo_cli $asset sendtoaddress $NN_ADDRESS $BALANCE _ _ true"
+                        do_send
+                else
+                        log_print "ERROR: $RESULT"
+                        exit
+                fi
+        done
+        log_print "txid: $RESULT"
 
     i=0
     confirmations=0
@@ -286,9 +276,9 @@ function reset_wallet() {
     send_balance $coin
     log_print "ht.$height ($blockhash)"
 
-    NN_ZADDRESS=$($komodo_cli $asset z_getnewaddress)
-    NN_ZKEY=$($komodo_cli $asset z_exportkey $NN_ZADDRESS)
-    log_print "New z-address $NN_ZADDRESS"
+    #NN_ZADDRESS=$($komodo_cli $asset z_getnewaddress)
+    #NN_ZKEY=$($komodo_cli $asset z_exportkey $NN_ZADDRESS)
+    #log_print "New z-address $NN_ZADDRESS"
 
     if [ $coin == "KMD" ]
     then
@@ -326,11 +316,11 @@ function reset_wallet() {
 
     wait_for_daemon $coin
     log_print "Importing private key ... "
-	log_print "$komodo_cli $asset importprivkey $NN_PRIVKEY __ false"
-    $komodo_cli $asset importprivkey $NN_PRIVKEY "" false
-    log_print "Rescanning from ht.$height ... "
-	log_print "$komodo_cli $asset z_importkey $NN_ZKEY yes $height"
-    $komodo_cli $asset z_importkey "$NN_ZKEY" yes $height
+    log_print "$komodo_cli $asset importprivkey $NN_PRIVKEY __ true $height"
+    $komodo_cli $asset importprivkey $NN_PRIVKEY "" true $height
+#    log_print "Rescanning from ht.$height ... "
+#    log_print "$komodo_cli $asset z_importkey $NN_ZKEY yes $height"
+#    $komodo_cli $asset z_importkey "$NN_ZKEY" yes $height
     log_print "Done reset ($coin)"
 }
 
@@ -340,14 +330,16 @@ init_colors
 # LOOP thru assetchains
 #if [ ! -z $1 ] && [ $1 != "KMD" ]
 #then
-	${KMD_PATH}/listassetchains | while read list; do
-		if [[ "${ignore_list[@]}" =~ "${list}" ]]; then
+
+${KMD_PATH}/listassetchains | while read list; do
+	if [[ "${ignore_list[@]}" =~ "${list}" ]]; then
 			continue
-		fi
-		reset_wallet $list
-	done
+	fi
+	reset_wallet $list
+done
+
 #else
-#	reset_wallet "KMD"
+#       reset_wallet "KMD"
 #fi
 log_print "THE END!"
 #EOF
