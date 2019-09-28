@@ -4,11 +4,11 @@ use warnings;
 
 my $ips = {};
 my $ip  = "";
-my $traceroute = "traceroute -n -m10";
+my $traceroute = "traceroute -n -m20";
 # default port or give it as a CLI argument like
 # cat iguana.log | nn_ips.pl 7774
 my $port = shift || 17775;
-my $self = '139.99.208.174';
+my $self = '144.76.10.114';
 while (<>) {
         if ( m!$self:$port\s+([0-9.]+):!) {
                 $ip = $1;
