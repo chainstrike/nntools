@@ -7,7 +7,7 @@ my $ip  = "";
 my $traceroute = "traceroute -n -m10";
 # default port or give it as a CLI argument like
 # cat iguana.log | nn_ips.pl 7774
-my $port = shift || 7776;
+my $port = shift || 17775;
 my $self = '139.99.208.174';
 while (<>) {
         if ( m!$self:$port\s+([0-9.]+):!) {
@@ -28,5 +28,5 @@ my @sorted = sort { $ips->{$a} <=> $ips->{$b} } keys %$ips;
 print "Closest NN IPs:\n";
 
 for my $ip (@sorted) {
-        print "curl --url \"http://127.0.0.1:$port\" --data \"{\\\"agent\\\":\\\"iguana\\\",\\\"method\\\":\\\"addnotary\\\",\\\"ipaddr\\\":\\\"$ip\\\"}\"\n";
+        print "curl --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"iguana\\\",\\\"method\\\":\\\"addnotary\\\",\\\"ipaddr\\\":\\\"$ip\\\"}\"\n";
 }
