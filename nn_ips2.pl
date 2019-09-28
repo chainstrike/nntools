@@ -4,15 +4,14 @@ use warnings;
 
 my $ips = {};
 my $ip  = "";
-my $traceroute = "traceroute -n -m10";
 # default port or give it as a CLI argument like
 # cat iguana.log | nn_ips.pl 7774
-my $port = shift || 7776;
+my $port = 17775 || shift;
 my $self = '139.99.208.174';
 while (<>) {
         if ( m!$self:$port\s+([0-9.]+):!) {
                 $ip = $1;
-                my $cmd = "$traceroute $ip";
+                my $cmd = "netstat -an|grep $port";
                 print "Running $cmd ...";
                 my $out = qx{$cmd};
                 #print "Hops: $out\n";
