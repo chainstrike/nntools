@@ -12,14 +12,14 @@ source $HOME/node.conf
 # --------------------------------------------------------------------------
 function init_colors() {
     RESET="\033[0m"
-    BLACK="\033[30m"    
-    RED="\033[31m"      
-    GREEN="\033[32m"    
-    YELLOW="\033[33m"   
-    BLUE="\033[34m"     
-    MAGENTA="\033[35m"  
-    CYAN="\033[36m"     
-    WHITE="\033[37m" 
+    BLACK="\033[30m"
+    RED="\033[31m"
+    GREEN="\033[32m"
+    YELLOW="\033[33m"
+    BLUE="\033[34m"
+    MAGENTA="\033[35m"
+    CYAN="\033[36m"
+    WHITE="\033[37m"
     BRIGHT="\033[1m"
     DARKGREY="\033[90m"
 }
@@ -30,7 +30,7 @@ function log_print() {
    echo -e [$datetime] $1
 }
 
-function do_autosplit() {
+function dosplit() {
 
     if [ ! -z $1 ] && [ $1 != "KMD" ]
     then
@@ -65,9 +65,9 @@ function do_autosplit() {
                     # sleep 3
                     txidcheck=$($komodo_cli $asset getrawtransaction $txid 1 2>/dev/null | jq -r .txid)
                     if [ "$txidcheck" = "$txid" ]; then
-                        log_print "txid.${GREEN}$txid${RESET} - OK" 
+                        log_print "txid.${GREEN}$txid${RESET} - OK"
                     else
-                        log_print "txid.${RED}$txid${RESET} - FAIL" 
+                        log_print "txid.${RED}$txid${RESET} - FAIL"
                         # tx possible fail, because iguana produced incorrect sign, no problem, let's resign it by daemon and broadcast (perfect solution, isn't it?)
                         daemonsigned=$($komodo_cli $asset signrawtransaction $signed | jq -r .hex)
                         newtxid=$($komodo_cli $asset sendrawtransaction $daemonsigned)
@@ -80,6 +80,8 @@ function do_autosplit() {
             else
                 if [ ! -z "$splitres" ]; then
                     log_print "${RED}$error${RESET}"
+#		    log_print "${RED}Trying to send fresh funds...${RESET}"
+#		    $HOME/nntools/freshutxo.sh
                 else
                     log_print "${RED}Failed to receive curl answer, possible iguana died ...${RESET}"
                 fi
@@ -95,9 +97,21 @@ function do_autosplit() {
 init_colors
 log_print "Starting autosplit ..."
 
-declare -a kmd_coins=(KMD REVS SUPERNET DEX PANGEA JUMBLR BET CRYPTO HODL MSHARK BOTS MGW WLC KV CEAL MESH AXO ETOMIC BTCH NINJA OOT BNTN CHAIN PRLPAY DSEC EQL ZILLA RFOX SEC CCL PIRATE PGT KMDICE DION KSB OUR ILN RICK MORTY KOIN HUSH3 ZEXO K64 THC)
-#declare -a kmd_coins=(BEER PIZZA DEX)
-for i in "${kmd_coins[@]}"
-do
-    do_autosplit $i
+# KMD
+dosplit KMD
+# AC
+$HOME/komodo/src/listassetchains | while read list; do
+        if [[ "${ignoreacs[@]}" =~ "${list}" ]]; then
+                continue
+        fi
+	dosplit $list
 done
+
+#declare -a kmd_coins=(KMD REVS SUPERNET DEX PANGEA JUMBLR BET CRYPTO HODL MSHARK BOTS MGW WLC KV CEAL MESH AXO ETOMIC BTCH NINJA OOT BNTN CHAIN PRLPAY DSEC EQL ZILLA RFOX SEC CCL PIRATE PGT KMDICE DION KSB OUR ILN RICK MORTY KOIN HUSH3 ZEXO K64 THC)
+#declare -a kmd_coins=(BEER PIZZA DEX)
+#for i in "${kmd_coins[@]}"
+#do
+#    do_autosplit $i
+#done
+
+# EOF
