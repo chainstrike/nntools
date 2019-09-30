@@ -36,6 +36,7 @@ processlist=(
 'MSHARK'
 'BOTS'
 'MGW'
+'COQUICASH'
 'WLC'
 'KV'
 'CEAL'
