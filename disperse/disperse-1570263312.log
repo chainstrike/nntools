@@ -1,0 +1,89 @@
+7d02354b46378fd7e353eb874294e2754a9c9e716eed7226dac39bf6d138a648
+4d108103ebea2eb0fce453198fcfb6e690b74883f5952d69039969fc228cc7fe
+Checking BTC, CHIPS, KMD
+BTC/home/vax/nntools/autosplit.sh: line 38: /usr/bin/bitcoin-cli: No such file or directory
+		0 - SPLITFUNDING BTC  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  5016    0  4915  100   101   399k   8416 --:--:-- --:--:-- --:--:--  408k
+{"result":"0100000001a0497ecf6e88d2b22ab3971fbc2031ce0ec1365db7e6ed22962ea407caa2944f350000006a473044022017c6762e649dfcee78caf3962746aa46e66b689b45def1c0fadab29fff70802202205ddedbb01e52e973b4d5694e1bbef6de4b7fb980be2b8396fb4975f9d82c66170121037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ffffffff3310270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac10270000000000002321037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac4d947701000000001976a914e2e0ab137d59b6163f34eb2a4ca8349ebb7e18f888ac00000000","txid":"bf838ff6f734a8679dcbd4d5b67ca37bde3bf3cbc3ee5eb9433771a005702b92","completed":true,"tag":"3577946694477042107"}
+
+/home/vax/nntools/autosplit.sh: line 49: cd: /home/vax/chips3/src: No such file or directory
+CHIPS/home/vax/nntools/autosplit.sh: line 51: /usr/local/bin/chips-cli: No such file or directory
+		0SPLITFUNDING CHIPS  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   160    0    57  100   103  57000   100k --:--:-- --:--:-- --:--:--  156k
+{"error":"need active coin","tag":"5840408761138472328"}
+
+/home/vax/nntools/autosplit.sh: line 62: cd: /home/vax/GameCredits/src: No such file or directory
+GAMECREDITS/home/vax/nntools/autosplit.sh: line 64: /usr/local/bin/gamecredits-cli: No such file or directory
+		0SPLITFUNDING GAME  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   160    0    57  100   103  57000   100k --:--:-- --:--:-- --:--:--  156k
+{"error":"need active coin","tag":"3108127304400892372"}
+
+KMD		147
+HUSH/home/vax/nntools/autosplit.sh: line 90: /home/vax/hush/src/hush-cli: No such file or directory
+		0 - SPLITFUNDING HUSH  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   160    0    58  100   102  58000    99k --:--:-- --:--:-- --:--:--  156k
+{"error":"need active coin","tag":"15982060557797384325"}
+
+/home/vax/nntools/autosplit.sh: line 101: cd: /home/vax/einsteinium/src: No such file or directory
+EMC2/home/vax/nntools/autosplit.sh: line 103: /home/vax/einsteinium/src/einsteinium-cli: No such file or directory
+		0 - SPLITFUNDING HUSH  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   161    0    58  100   103  58000   100k --:--:-- --:--:-- --:--:--  157k
+{"error":"need active coin","tag":"15357301779220573825"}
+
+Checking Other Coins
+REVS		78
+SUPERNET		121
+DEX		127
+PANGEA		78
+JUMBLR		110
+BET		89
+CRYPTO		91
+HODL		118
+MSHARK		109
+BOTS		100
+MGW		110
+COQUICASH		129
+WLC		136
+KV		136
+CEAL		145
+MESH		131
+AXO		78
+ETOMIC		128
+BTCH		138
+NINJA		82
+OOT		81
+BNTN		119
+CHAIN		88
+PRLPAY		124
+DSEC		123
+EQL		117
+ZILLA		138
+RFOX		112
+SEC		119
+CCL		108
+PIRATE		109
+PGT		125
+DION		105
+KMDICE		105
+KSB		107
+OUR		148
+ILN		109
+RICK		97
+MORTY		103
+KOIN		139
+ZEXO		131
+K64		93
+HUSH3		149
+THC		146
+VRSCerror: couldn't connect to server: unknown (code -1)
+(make sure server is running and you are connecting to the correct RPC port)
+		0 - SPLIT FUNDING: VRSC  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   159    0    57  100   102  57000    99k --:--:-- --:--:-- --:--:--  155k
+{"error":"need active coin","tag":"6639589398556357863"}
+

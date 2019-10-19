@@ -14,11 +14,11 @@ git stash
 git checkout blackjok3r
 git pull
 
-printf "\n${GR}>>>>>>> CHECKING HUSH${NC}\n"
-cd /home/$USER/hush3
-git stash
-git checkout dev
-git pull
+#printf "\n${GR}>>>>>>> CHECKING HUSH${NC}\n"
+#cd /home/$USER/hush3
+#git stash
+#git checkout dev
+#git pull
 
 #printf "\n${GR}>>>>>>> CHECKING CHIPS${NC}\n"
 #cd /home/$USER/chips3

@@ -6,12 +6,12 @@ my $balance = qx{$cli getbalance};
 print "# Current Balance=$balance\n";
 my %addresses = (
 	# address => percent
-	"RQZXbeVihmTkEeZ6fBXtSpg3BywjmVosYS" => .45, # jeezy
-	"RGjwWtkCKvHCQZCJhJ66XwjALSRdpWjzYi" => .45, # duke
-	"RF79i22W3YXMGsjzBLXNxU5KvWe31dG5pQ" => .10  # projects
+	"RQZXbeVihmTkEeZ6fBXtSpg3BywjmVosYS" => 1.0, # jeezy
+#	"RGjwWtkCKvHCQZCJhJ66XwjALSRdpWjzYi" => .45, # duke
+#	"RF79i22W3YXMGsjzBLXNxU5KvWe31dG5pQ" => .10  # projects
 );
 
-my $self = "RM9c7nGctj8WsJ1bKXW4JZNGpqC8MPfBVw";
+my $self = "RVxow6SGPCjL2TxfTcztxMWeJWgS5rZTE6";
 
 # leave 11 and disperse rest
 my $reserve = 11;
@@ -27,5 +27,5 @@ if ($disperse > 0) {
    print "$cmd\n";
    $cmd = $ENV{HOME} . "/nntools/autosplit.sh";
    # sometimes an f4a period can make blocks take a while
-   print "sleep 300; $cmd\n";
+   print "sleep 120; $cmd\n";
 }
