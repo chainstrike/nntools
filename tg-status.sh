@@ -70,6 +70,7 @@ processlist=(
 'K64'
 'THC'
 'COMMOD'
+'WLC21'
 )
 
 count=0

@@ -1,5 +1,7 @@
 #!/bin/bash
 # Suggest using with this command: watch --color -n 60 ./status
+source $HOME/node.conf
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
@@ -30,51 +32,6 @@ processlist=(
 'iguana'
 'komodod'
 'bitcoind'
-'REVS'
-'SUPERNET'
-'DEX'
-'PANGEA'
-'JUMBLR'
-'BET'
-'CRYPTO'
-'HODL'
-'MSHARK'
-'BOTS'
-'MGW'
-'COQUICASH'
-'WLC'
-'KV'
-'CEAL'
-'MESH'
-'AXO'
-'BTCH'
-'ETOMIC'
-'NINJA'
-'OOT'
-'BNTN'
-'CHAIN'
-'PRLPAY'
-'DSEC'
-'EQL'
-'ZILLA'
-'RFOX'
-'HUSH3'
-'SEC'
-'CCL'
-'PIRATE'
-'PGT'
-'KMDICE'
-'DION'
-'KSB'
-'OUR'
-'ILN'
-'RICK'
-'MORTY'
-'KOIN'
-'ZEXO'
-'K64'
-'THC'
-'COMMOD'
 )
 
 count=0
@@ -106,14 +63,7 @@ do
             RESULT2="$(bitcoin-cli -rpcclienttimeout=15 getbalance)"
 
     fi
-    if [ "$count" -gt "2" ]
-    then
-            cd ~/komodo/src
-            RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} listunspent | grep .00010000 | wc -l)"
-            RESULT1="$(./komodo-cli -ac_name=${processlist[count]} -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
-            RESULT2="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${processlist[count]} getbalance)"
-    fi
-# Check if we have actual results next two lines check for valid number.
+    # Check if we have actual results next two lines check for valid number.
     if [[ $RESULT == ?([-+])+([0-9])?(.*([0-9])) ]] ||
        [[ $RESULT == ?(?([-+])*([0-9])).+([0-9]) ]]
     then
@@ -164,3 +114,78 @@ do
   fi
   count=$(( $count +1 ))
 done
+
+count=0
+$HOME/komodo/src/listassetchains | while read list; do
+	if [[ "${ignoreacs[@]}" =~ "${list}" ]]; then
+		continue
+	fi
+
+  echo -n "${list}"
+  #fixes formating issues
+  size=${#list}
+  if [ "$size" -lt "8" ]
+  then
+    echo -n -e "\t\t"
+  else
+    echo -n -e "\t"
+  fi
+  if [ $(process_check ${list}) ]
+  then
+    printf "Process: ${GREEN} Running ${NC}"
+    cd ~/komodo/src
+    RESULT="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${list} listunspent | grep .00010000 | wc -l)"
+    RESULT1="$(./komodo-cli -ac_name=${list} -rpcclienttimeout=15  listunspent|grep amount|awk '{print $2}'|sed s/.$//|awk '$1 < 0.0001'|wc -l)"
+    RESULT2="$(./komodo-cli -rpcclienttimeout=15 -ac_name=${list} getbalance)"
+    # Check if we have actual results next two lines check for valid number.
+    if [[ $RESULT == ?([-+])+([0-9])?(.*([0-9])) ]] ||
+       [[ $RESULT == ?(?([-+])*([0-9])).+([0-9]) ]]
+    then
+    if [ "$RESULT" -lt "30" ]
+    then
+    printf  " - Avail UTXOs: ${RED}$RESULT\t${NC}"
+    else
+    printf  " - Avail UTXOs: ${GREEN}$RESULT\t${NC}"
+    fi
+    fi
+
+ if [[ $RESULT1 == ?([-+])+([0-9])?(.*([0-9])) ]] ||
+       [[ $RESULT1 == ?(?([-+])*([0-9])).+([0-9]) ]]
+    then
+    if [ "$RESULT1" -gt "0" ]
+    then
+    printf  " - Dust UTXOs: ${RED}$RESULT1\t${NC}"
+    else
+    printf  " - Dust UTXOs: ${GREEN}$RESULT1\t${NC}"
+    fi
+    fi
+
+
+    if [[ $RESULT2 == ?([-+])+([0-9])?(.*([0-9])) ]] ||
+       [[ $RESULT2 == ?(?([-+])*([0-9])).+([0-9]) ]]
+    then
+    if (( $(echo "$RESULT2 > 0.1" | bc -l) ));
+    then
+    printf  " - Avail Funds: ${GREEN}$RESULT2\t${NC}\n"
+ #   printf "\t - Current Block: X\t - Longest Chain: X - Last Notarized: X\n"
+
+    else
+    printf  " - Avail Funds: ${RED}$RESULT2\t${NC}\n"
+#    printf "\t - Current Block: X\t - Longest Chain: X - Last Notarized: X\n"
+
+    fi
+    else
+      printf "\n"
+    fi
+
+
+    RESULT=""
+    RESULT2=""
+
+  else
+    printf "Process: ${RED} Not Running ${NC}\n"
+    echo "Not Running"
+  fi
+  count=$(( $count +1 ))
+done
+
