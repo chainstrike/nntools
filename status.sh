@@ -188,4 +188,3 @@ $HOME/komodo/src/listassetchains | while read list; do
   fi
   count=$(( $count +1 ))
 done
-
