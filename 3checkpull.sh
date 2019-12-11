@@ -9,16 +9,16 @@ git checkout beta
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING IGUANA${NC}\n"
-cd /home/$USER/SuperNET/iguana
+cd /home/$USER/dPoW/iguana
 git stash
-git checkout blackjok3r
+git checkout master
 git pull
 
-printf "\n${GR}>>>>>>> CHECKING HUSH${NC}\n"
-cd /home/$USER/hush3
-git stash
-git checkout dev
-git pull
+#printf "\n${GR}>>>>>>> CHECKING HUSH${NC}\n"
+#cd /home/$USER/hush3
+#git stash
+#git checkout dev
+#git pull
 
 printf "\n${GR}>>>>>>> CHECKING CHIPS${NC}\n"
 cd /home/$USER/chips3
@@ -32,11 +32,11 @@ git stash
 git checkout master
 git pull
 
-printf "\n${GR}>>>>>>> CHECKING VERUS${NC}\n"
-cd /home/$USER/VerusCoin
-git stash
-git checkout master
-git pull
+#printf "\n${GR}>>>>>>> CHECKING VERUS${NC}\n"
+#cd /home/$USER/VerusCoin
+#git stash
+#git checkout master
+#git pull
 
 printf "\n${GR}>>>>>>> CHECKING EMC2${NC}\n"
 cd /home/$USER/einsteinium
