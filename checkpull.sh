@@ -9,9 +9,9 @@ git checkout beta
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING IGUANA${NC}\n"
-cd /home/$USER/SuperNET/iguana
+cd /home/$USER/dPoW/iguana
 git stash
-git checkout blackjok3r
+git checkout master
 git pull
 
 #printf "\n${GR}>>>>>>> CHECKING HUSH${NC}\n"
