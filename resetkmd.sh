@@ -92,7 +92,6 @@ function send_balance()
 {
 	coin="KMD"
 	asset=""
-
     get_balance
 	log_print "Total Balance: $BALANCE"
     BALANCE=$(printf %f $(bc -l <<< "scale=8;$BALANCE*0.9"))
@@ -100,29 +99,37 @@ function send_balance()
     RESULT=$($komodo_cli sendtoaddress $PAYOUT $BALANCE "" "" true 2>&1)
     i=0
     confirmations=0
-    while [ "$confirmations" -eq "0" ]
-    do
+	while [ "$confirmations" -eq "0" ]
+	do
 		confirmations=$($komodo_cli gettransaction $RESULT | jq .confirmations)
 		i=$((i+1))
 		log_print "Waiting for confirmations ($i).$confirmations"
 		sleep 10
-    done
+	done
 	log_print "Confirmed! Sending rest to self and reset..."
 	sleep 3
-	get_balance
+	RESULT=$($komodo_cli sendtoaddress $PAYOUT $BALANCE "" "" true 2>&1)
 	do_send
-    i=0
-    confirmations=0
-    while [ "$confirmations" -eq "0" ]
-    do
+	i=0
+	confirmations=0
+	while [ "$confirmations" -eq "0" ]
+	do
 		confirmations=$($komodo_cli gettransaction $RESULT | jq .confirmations)
 		i=$((i+1))
 		log_print "Waiting for confirmations ($i).$confirmations"
 		sleep 10
-    done
-    blockhash=$($komodo_cli gettransaction $RESULT | jq -r .blockhash)
-    height=$($komodo_cli getblock $blockhash | jq .height)
-    log_print "Confirmed!"
+	done
+	blockhash=$($komodo_cli gettransaction $RESULT | jq -r .blockhash)
+	height=$($komodo_cli getblock $blockhash | jq .height)
+	log_print "BLOCKHASH = $blockhash"
+	log_print "HEIGHT = $height"
+	if [ -z "$blockhash" ] || [ -z "$height" ]
+	then
+		log_print "!!!ERROR!!! BLOCKHASH OR HEIGHT EMPTY - CANT CONTINUE - MAKE SURE ALL IS OK!"
+		exit 1
+	else
+		log_print "Confirmed!"
+	fi
 }
 
 # --------------------------------------------------------------------------
