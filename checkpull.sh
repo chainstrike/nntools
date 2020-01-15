@@ -5,7 +5,7 @@ NC='\033[0m'
 printf "\n${GR}>>> CHECKING KOMODO${NC}\n"
 cd /home/$USER/komodo/src
 git stash
-git checkout beta
+git checkout master
 git pull
 
 printf "\n${GR}>>>>>>> CHECKING IGUANA${NC}\n"

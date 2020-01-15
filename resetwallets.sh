@@ -46,19 +46,49 @@ komodo_daemon="$KMD_PATH/komodod"
 
 # Never do these (see listassetchains / assetchains.json)
 ignore_list=(
-    REVS
+REVS
 SUPERNET
-     DEX
-  PANGEA
-  JUMBLR
-     BET
-  CRYPTO
-    HODL
-  MSHARK
-    BOTS
-     MGW
+DEX
+PANGEA
+JUMBLR
+BET
+CRYPTO
+HODL
+MSHARK
+BOTS
+MGW
 COQUICASH
-     WLC
+WLC
+KV
+CEAL
+MESH
+AXO
+ETOMIC
+BTCH
+NINJA
+OOT
+BNTN
+CHAIN
+PRLPAY
+DSEC
+EQL
+ZILLA
+RFOX
+SEC
+CCL
+PIRATE
+PGT
+DION
+KMDICE
+KSB
+OUR
+ILN
+RICK
+MORTY
+KOIN
+ZEXO
+K64
+HUSH3
         VOTE2019
         GIN
         KMD
