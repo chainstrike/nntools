@@ -99,12 +99,12 @@ log_print "Starting autosplit ..."
 # KMD
 dosplit KMD
 # AC
-$HOME/komodo/src/listassetchains | while read list; do
-        if [[ "${ignoreacs[@]}" =~ "${list}" ]]; then
-                continue
-        fi
-	dosplit $list
-done
+#$HOME/komodo/src/listassetchains | while read list; do
+#        if [[ "${ignoreacs[@]}" =~ "${list}" ]]; then
+#                continue
+#        fi
+#	dosplit $list
+#done
 
 #declare -a kmd_coins=(KMD REVS SUPERNET DEX PANGEA JUMBLR BET CRYPTO HODL MSHARK BOTS MGW WLC KV CEAL MESH AXO ETOMIC BTCH NINJA OOT BNTN CHAIN PRLPAY DSEC EQL ZILLA RFOX SEC CCL PIRATE PGT KMDICE DION KSB OUR ILN RICK MORTY KOIN HUSH3 ZEXO K64 THC)
 #declare -a kmd_coins=(BEER PIZZA DEX)

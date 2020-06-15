@@ -1,0 +1,82 @@
+#!/bin/bash
+
+
+
+####### CONFIG FRESHUTXO
+NODEADDR=RVxow6SGPCjL2TxfTcztxMWeJWgS5rZTE6
+NODE_THIRD_ADDR=RUQe7p3ddstoxGdA23wCWRRFemb7NyAfJs
+####### END CONFIG FRESHUTXO
+
+
+
+####### CONFIG SPLIT BTC
+NN_ADDRESS=1MgcraYynNvkxTbTzT1mrqBSYFDqPNE6A4
+NN_PUBKEY=037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7
+NN_HASH160=e2e0ab137d59b6163f34eb2a4ca8349ebb7e18f8
+#NN_ADDRESS=1PaDKKamr7MrnheZZc7twW81TwU9MQK4JV
+#NN_PUBKEY=0370bcf10575d8fb0291afad7bf3a76929734f888228bc49e35c5c49b336002153
+#NN_HASH160=f79ac6561f09ccc445ba0820c8167c1f1d004d93
+FROM_ADDRESS=1MgcraYynNvkxTbTzT1mrqBSYFDqPNE6A4
+FROM_HASH160=e2e0ab137d59b6163f34eb2a4ca8349ebb7e18f8
+#FROM_ADDRESS=1PaDKKamr7MrnheZZc7twW81TwU9MQK4JV
+#FROM_HASH160=f79ac6561f09ccc445ba0820c8167c1f1d004d93
+#FROM_PUBKEY=000000000000000000000000000000000000000000000000000000000000000000
+#FROM_PRIVKEY=Up1YVLk7uuErCHVQyFCtfinZngmdwfyfc47WCQ8oJxgowEbuo6t4
+SPLIT_VALUE=0.0001
+SPLIT_VALUE_SATOSHI=$(jq -n "$SPLIT_VALUE*100000000")
+SPLIT_COUNT=100 # do not set split count > 252 (!), it's important
+SPLIT_TOTAL=$(jq -n "$SPLIT_VALUE*$SPLIT_COUNT")
+SPLIT_TOTAL_SATOSHI=$(jq -n "$SPLIT_VALUE*$SPLIT_COUNT*100000000")
+TXFEE_SATOSHI_VBYTE=130 # take it from https://btc.com/stats/unconfirmed-tx
+####### END CONFIG SPLIT BTC
+
+
+
+####### CONFIG AS_DECKER
+chips_cli=$HOME/chips3/src/chips-cli
+bitcoin_cli=/usr/bin/bitcoin-cli
+gamecredits_cli=$HOME/GameCredits/src/gamecredits-cli
+komodo_cli=$HOME/komodo/src/komodo-cli
+# all you need is to insert your pubkey here in lock script format: 21{YOUR_33_BYTES_HEX_PUBKEY}AC
+#NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
+NN_PUBKEY=21037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac
+# script check the condition if utxo_count < utxo_min then append it to utxo_max,
+# small example: utxo_min = 100; utxo_max = 100; if you have 90 utxo (90 < utxo_min)
+# script will spilt additional 10 utxos to have utxo_max (100).
+# every splitfunds tx is signed and trying to broadcast by iguana, then it checks by daemon,
+# if tx failed to broadcast (not in chain) it resigned by daemon and broadcast to network.
+# very simple solution until we fix internal iguana splitfund sign.
+utxo_min=77
+utxo_max=150
+####### END CONFIG AS_DECKER
+
+
+
+####### CONFIG AS_DECKER 3RD PARTY
+declare -A coins
+coins[BTC]=/usr/local/bin/bitcoin-cli
+#coins[CHIPS]=$HOME/chips3/src/chips-cli
+#coins[GAME]=$HOME/GameCredits/src/gamecredits-cli
+#coins[EMC2]=$HOME/einsteinium/src/einsteinium-cli
+#coins[HUSH3]=$HOME/hush3/src/hush-cli
+#coins[GIN]=$HOME/gincoin-core/src/gincoin-cli
+# declare -A coins=( [BTC]=/usr/local/bin/bitcoin-cli [GAME]=$HOME/GameCredits/src/gamecredits-cli ) # example of on$
+# all you need is to insert your pubkey here in lock script format: 21{YOUR_33_BYTES_HEX_PUBKEY}AC
+#NN_PUBKEY=21023cb3e593fb85c5659688528e9a4f1c4c7f19206edc7e517d20f794ba686fd6d6ac
+NN_PUBKEY=21037f182facbad35684a6e960699f5da4ba89e99f0d0d62a87e8400dd086c8e5dd7ac
+# script check the condition if utxo_count < utxo_min then append it to utxo_max,
+# small example: utxo_min = 100; utxo_max = 100; if you have 90 utxo (90 < utxo_min)
+# script will spilt additional 10 utxos to have utxo_max (100).
+# every splitfunds tx is signed and trying to broadcast by iguana, then it checks by daemon,
+# if tx failed to broadcast (not in chain) it resigned by daemon and broadcast to network.
+# very simple solution until we fix internal iguana splitfund sign.
+utxo_min_3rd=50
+utxo_max_3rd=100
+####### END CONFIG AS_DECKER 3RD PARTY
+
+####### WEBWORKER STUFF
+#You can modify this list of ACs to exclude or comment out the line to show all
+ignoreacs=('VOTE2018' 'VOTE2019' 'BEER' 'PIZZA')
+#Location for nntools.log
+nntoolslogfile=$HOME/tools.log
+####### END WW STUFF
